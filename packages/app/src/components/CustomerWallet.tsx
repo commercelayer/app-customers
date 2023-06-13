@@ -64,6 +64,8 @@ export const CustomerWallet = withSkeletonTemplate<Props>(({ customer }) => {
     }
   )
 
+  if (customerPaymentSources == null) return <></>
+
   return (
     <>
       <Legend title='Wallet' />

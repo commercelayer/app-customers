@@ -75,6 +75,8 @@ export const CustomerAddresses = withSkeletonTemplate<Props>(
       )
     )
 
+    if (addresses?.length === 0) return <></>
+
     return (
       <>
         <Legend title='Addresses' />
