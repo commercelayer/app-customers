@@ -20,9 +20,6 @@ export function useCustomerDetails(id: string): {
       {
         include: [
           'customer_group',
-          'orders',
-          'orders.market',
-          'orders.billing_address',
           'customer_addresses',
           'customer_addresses.address',
           'customer_payment_sources',

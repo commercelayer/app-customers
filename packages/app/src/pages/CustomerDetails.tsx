@@ -72,7 +72,7 @@ export function CustomerDetails(): JSX.Element {
             <CustomerInfo customer={customer} />
           </Spacer>
           <Spacer top='14'>
-            <CustomerLastOrders customer={customer} />
+            <CustomerLastOrders />
           </Spacer>
           <Spacer top='14'>
             <CustomerWallet customer={customer} />

@@ -1,4 +1,5 @@
 import { getPaymentStatusName } from '#data/dictionaries'
+import { appRoutes } from '#data/routes'
 import { getDisplayStatus } from '#data/status'
 import {
   Icon,
@@ -10,14 +11,11 @@ import {
   useTokenProvider,
   withSkeletonTemplate
 } from '@commercelayer/app-elements'
-import type { Customer, Order } from '@commercelayer/sdk'
+import type { Order } from '@commercelayer/sdk'
 import isEmpty from 'lodash/isEmpty'
 
 import { useCustomerOrdersDetails } from 'src/hooks/useCustomerOrdersDetails'
-
-interface Props {
-  customer: Customer
-}
+import { useRoute } from 'wouter'
 
 function getOrderBillingAddressText(order: Order): string | undefined {
   const billingAddress = order?.billing_address
@@ -48,66 +46,67 @@ function getOrderStatusText(order: Order): JSX.Element {
   )
 }
 
-export const CustomerLastOrders = withSkeletonTemplate<Props>(
-  ({ customer }): JSX.Element => {
-    const { user } = useTokenProvider()
+export const CustomerLastOrders = withSkeletonTemplate((): JSX.Element => {
+  const { user } = useTokenProvider()
 
-    const ordersLimit = 5
+  const [, params] = useRoute<{ customerId: string }>(appRoutes.details.path)
+  const customerId = params?.customerId ?? ''
 
-    const needShowAll =
-      customer?.orders != null && customer?.orders?.length > ordersLimit
-    console.log('needShowAll', needShowAll)
-    // TODO: Manage the ShowAll case
+  if (customerId.length === 0) return <></>
 
-    if (customer?.id === undefined) return <></>
+  const { orders } = useCustomerOrdersDetails(customerId, { pageSize: 6 })
+  const lastOrdersLimit = 5
+  const needShowAll = orders != null && orders?.length > lastOrdersLimit
+  console.log('needShowAll', needShowAll)
+  // TODO: Manage show all button and orders page
 
-    const { orders } = useCustomerOrdersDetails(customer?.id, { pageSize: 5 })
-
-    const ordersListItems = orders?.map((order, idx) => {
-      const displayStatus = getDisplayStatus(order)
-      return (
-        <ListItem
-          key={idx}
-          tag='div'
-          icon={
-            <Icon
-              name={displayStatus.icon}
-              background={displayStatus.color}
-              gap='large'
-            />
-          }
-        >
-          <div>
-            <Text tag='div' weight='semibold'>
-              {order.market?.name} #{order.number}
-            </Text>
-            <Text tag='div' weight='medium' size='small' variant='info'>
-              {formatDate({
-                format: 'date',
-                isoDate: order.updated_at,
-                timezone: user?.timezone
-              })}
-              {getOrderBillingAddressText(order)}
-              {getOrderStatusText(order)}
-            </Text>
-          </div>
-          <div>
-            <Text tag='div' weight='semibold'>
-              {order.formatted_total_amount}
-            </Text>
-            <Text tag='div' weight='medium' size='small' variant='info'>
-              {getPaymentStatusName(order.payment_status)}
-            </Text>
-          </div>
-        </ListItem>
-      )
-    })
-
+  const lastOrders = orders != null ? orders?.slice(0, lastOrdersLimit) : []
+  const ordersListItems = lastOrders?.map((order, idx) => {
+    const displayStatus = getDisplayStatus(order)
     return (
-      <>
-        <Legend title='Order history' />
-        {ordersListItems}
-      </>
+      <ListItem
+        key={idx}
+        tag='div'
+        icon={
+          <Icon
+            name={displayStatus.icon}
+            background={displayStatus.color}
+            gap='large'
+          />
+        }
+      >
+        <div>
+          <Text tag='div' weight='semibold'>
+            {order.market?.name} #{order.number}
+          </Text>
+          <Text tag='div' weight='medium' size='small' variant='info'>
+            {formatDate({
+              format: 'date',
+              isoDate: order.updated_at,
+              timezone: user?.timezone
+            })}
+            {getOrderBillingAddressText(order)}
+            {getOrderStatusText(order)}
+          </Text>
+        </div>
+        <div>
+          <Text tag='div' weight='semibold'>
+            {order.formatted_total_amount}
+          </Text>
+          <Text tag='div' weight='medium' size='small' variant='info'>
+            {getPaymentStatusName(order.payment_status)}
+          </Text>
+        </div>
+      </ListItem>
     )
-  }
-)
+  })
+
+  if (lastOrders.length === 0) return <></>
+
+  return (
+    <>
+      <Legend title='Order history' />
+      {ordersListItems}
+    </>
+  )
+})
