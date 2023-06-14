@@ -49,7 +49,9 @@ export function Filters(): JSX.Element {
         </Spacer>
 
         <Spacer bottom='14'>
-          <Button type='submit'>Apply filters</Button>
+          <Button type='submit' className='w-full'>
+            Apply filters
+          </Button>
         </Spacer>
       </Form>
     </PageLayout>

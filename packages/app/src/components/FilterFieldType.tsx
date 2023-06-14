@@ -14,7 +14,7 @@ export function FilterFieldType(): JSX.Element {
   return (
     <ToggleButtons
       label={computeFilterLabel({
-        label: 'Customer type',
+        label: 'Type',
         selectedCount,
         totalCount: filterableType.length
       })}

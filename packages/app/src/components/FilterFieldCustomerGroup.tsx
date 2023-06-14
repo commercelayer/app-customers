@@ -56,7 +56,7 @@ function List({
         <SkeletonTemplate isLoading={isLoading}>
           <Text variant='info' weight='medium'>
             {computeFilterLabel({
-              label: 'Customer groups',
+              label: 'Groups',
               selectedCount,
               totalCount: options.length
             })}
@@ -110,7 +110,7 @@ function Select({ options }: { options: CustomerGroup[] }): JSX.Element | null {
 
   return (
     <InputSelect
-      label='Customer groups'
+      label='Groups'
       name='customerGroup'
       initialValues={options.map((customerGroup) => ({
         value: customerGroup.id,

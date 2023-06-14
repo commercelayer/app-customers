@@ -14,7 +14,7 @@ export function FilterFieldStatus(): JSX.Element {
   return (
     <ToggleButtons
       label={computeFilterLabel({
-        label: 'Customer status',
+        label: 'Status',
         selectedCount,
         totalCount: filterableStatus.length
       })}
