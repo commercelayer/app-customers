@@ -24,7 +24,9 @@ export const CustomerStatus = withSkeletonTemplate<Props>(
               Orders
             </Text>
           </Spacer>
-          <Text weight='bold'>{getOrdersCount(customer)}</Text>
+          <Text weight='semibold' className='text-lg'>
+            {getOrdersCount(customer)}
+          </Text>
         </div>
         <div>
           <Spacer bottom='2'>
@@ -32,7 +34,7 @@ export const CustomerStatus = withSkeletonTemplate<Props>(
               Type
             </Text>
           </Spacer>
-          <Text weight='bold'>
+          <Text weight='semibold' className='text-lg'>
             {customer?.has_password === true ? 'Registered' : 'Guest'}
           </Text>
         </div>
