@@ -51,7 +51,7 @@ const useTimelineReducer = (
           type: 'add',
           payload: {
             date: customer.created_at,
-            message: 'Created'
+            message: 'Customer created'
           }
         })
       }
@@ -66,7 +66,7 @@ const useTimelineReducer = (
           type: 'add',
           payload: {
             date: customer.updated_at,
-            message: 'Updated'
+            message: 'Customer updated'
           }
         })
       }
