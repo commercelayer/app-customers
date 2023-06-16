@@ -17,7 +17,7 @@ import isEmpty from 'lodash/isEmpty'
 import { useCustomerOrdersDetails } from 'src/hooks/useCustomerOrdersDetails'
 import { useRoute } from 'wouter'
 
-function getOrderBillingAddressText(order: Order): string | undefined {
+function orderBillingAddress(order: Order): string | undefined {
   const billingAddress = order?.billing_address
   if (billingAddress != null) {
     const billingAddressText = !isEmpty(billingAddress?.company)
@@ -30,7 +30,7 @@ function getOrderBillingAddressText(order: Order): string | undefined {
   }
 }
 
-function getOrderStatusText(order: Order): JSX.Element {
+function orderStatusText(order: Order): JSX.Element {
   const displayStatus = getDisplayStatus(order)
   return (
     <>
@@ -61,6 +61,8 @@ export const CustomerLastOrders = withSkeletonTemplate((): JSX.Element => {
   // TODO: Manage show all button and orders page
 
   const lastOrders = orders != null ? orders?.slice(0, lastOrdersLimit) : []
+  if (lastOrders.length === 0) return <></>
+
   const ordersListItems = lastOrders?.map((order, idx) => {
     const displayStatus = getDisplayStatus(order)
     return (
@@ -85,8 +87,8 @@ export const CustomerLastOrders = withSkeletonTemplate((): JSX.Element => {
               isoDate: order.updated_at,
               timezone: user?.timezone
             })}
-            {getOrderBillingAddressText(order)}
-            {getOrderStatusText(order)}
+            {orderBillingAddress(order)}
+            {orderStatusText(order)}
           </Text>
         </div>
         <div>
@@ -100,8 +102,6 @@ export const CustomerLastOrders = withSkeletonTemplate((): JSX.Element => {
       </ListItem>
     )
   })
-
-  if (lastOrders.length === 0) return <></>
 
   return (
     <>
