@@ -25,7 +25,8 @@
       "#data/*": ["src/data/*"],
       "#pages/*": ["src/pages/*"],
       "#mocks": ["src/mocks/index"],
-      "#contexts/*": ["src/contexts/*"]
+      "#contexts/*": ["src/contexts/*"],
+      "#utils/*": ["src/utils/*"]
     }
   },
   "include": [

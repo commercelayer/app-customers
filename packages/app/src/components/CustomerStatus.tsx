@@ -1,3 +1,4 @@
+import { getCustomerStatus } from '#utils/getCustomerStatus'
 import {
   Spacer,
   Stack,
@@ -10,12 +11,14 @@ interface Props {
   customer: Customer
 }
 
-function getOrdersCount(customer: Customer): number {
+function ordersCount(customer: Customer): number {
   return customer.orders?.length ?? 0
 }
 
 export const CustomerStatus = withSkeletonTemplate<Props>(
   ({ customer }): JSX.Element => {
+    const customerStatus = getCustomerStatus(customer)
+
     return (
       <Stack>
         <div>
@@ -25,7 +28,7 @@ export const CustomerStatus = withSkeletonTemplate<Props>(
             </Text>
           </Spacer>
           <Text weight='semibold' className='text-lg'>
-            {getOrdersCount(customer)}
+            {ordersCount(customer)}
           </Text>
         </div>
         <div>
@@ -34,8 +37,8 @@ export const CustomerStatus = withSkeletonTemplate<Props>(
               Type
             </Text>
           </Spacer>
-          <Text weight='semibold' className='text-lg'>
-            {customer?.has_password === true ? 'Registered' : 'Guest'}
+          <Text weight='semibold' className='text-lg capitalize'>
+            {customerStatus}
           </Text>
         </div>
       </Stack>
