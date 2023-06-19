@@ -116,7 +116,7 @@ export function AddressForm({
       )}
 
       <Spacer top='14'>
-        <Button type='submit' disabled={isSubmitting}>
+        <Button type='submit' disabled={isSubmitting} className='w-full'>
           Update address
         </Button>
         <ValidationApiError apiError={apiError} />
