@@ -1,5 +1,3 @@
-import { computeFilterLabel, type FilterFormValues } from '#data/filters'
-import { makeCustomerGroup, repeat } from '#mocks'
 import {
   AvatarLetter,
   Card,
@@ -10,16 +8,19 @@ import {
   useCoreSdkProvider
 } from '@commercelayer/app-elements'
 import { InputSelect } from '@commercelayer/app-elements-hook-form'
-import type { CommerceLayerClient, CustomerGroup } from '@commercelayer/sdk'
+import type { CustomerGroup } from '@commercelayer/sdk'
 import type { ListResponse } from '@commercelayer/sdk/lib/cjs/resource'
 import { useEffect, useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 
+import { computeFilterLabel, type FilterFormValues } from '#data/filters'
+import { makeCustomerGroup, repeat } from '#mocks'
+import { fetchCustomerGroups } from '#utils/fetchCustomerGroups'
+
 export function FilterFieldCustomerGroup(): JSX.Element {
   const { sdkClient } = useCoreSdkProvider()
-  const [fetchedCustomerGroup, setFetchedCustomerGroup] = useState<
-    ListResponse<CustomerGroup> | undefined
-  >()
+  const [fetchedCustomerGroup, setFetchedCustomerGroup] =
+    useState<ListResponse<CustomerGroup>>()
 
   useEffect(() => {
     if (sdkClient != null) {
@@ -129,27 +130,4 @@ function Select({ options }: { options: CustomerGroup[] }): JSX.Element | null {
       }}
     />
   )
-}
-
-async function fetchCustomerGroups({
-  hint,
-  sdkClient
-}: {
-  hint?: string
-  sdkClient: CommerceLayerClient
-}): Promise<ListResponse<CustomerGroup>> {
-  const list = await sdkClient.customer_groups.list({
-    fields: ['id', 'name'],
-    pageSize: 10,
-    filters:
-      hint != null
-        ? {
-            name_cont: hint
-          }
-        : undefined,
-    sort: {
-      name: 'asc'
-    }
-  })
-  return list
 }
