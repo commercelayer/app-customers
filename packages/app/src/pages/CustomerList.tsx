@@ -123,16 +123,9 @@ export function CustomerList({ type }: Props): JSX.Element {
 function buildListQuery(filters: QueryFilter): QueryParamsList {
   return {
     fields: {
-      customers: [
-        'id',
-        'email',
-        'created_at',
-        'updated_at',
-        'customer_group',
-        'orders'
-      ]
+      customers: ['id', 'email', 'created_at', 'updated_at', 'customer_group']
     },
-    include: ['orders', 'customer_group'],
+    include: ['customer_group'],
     pageSize: 25,
     filters,
     sort: {
