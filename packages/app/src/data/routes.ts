@@ -15,14 +15,22 @@ export const appRoutes = {
     makePath: (filters?: string) =>
       hasFilterQuery(filters) ? `/filters/?${filters}` : `/filters`
   },
+  new: {
+    path: `/new`,
+    makePath: () => `/new`
+  },
   details: {
-    path: '/:customerId',
-    makePath: (customerId: string) => `/${customerId}`
+    path: '/list/:customerId',
+    makePath: (customerId: string) => `/list/${customerId}`
+  },
+  edit: {
+    path: '/list/:customerId/edit',
+    makePath: (customerId: string) => `/list/${customerId}/edit`
   },
   editAddress: {
-    path: '/:customerId/addresses/:addressId/edit',
+    path: '/list/:customerId/addresses/:addressId/edit',
     makePath: (customerId: string, addressId: string) =>
-      `/${customerId}/addresses/${addressId}/edit`
+      `/list/${customerId}/addresses/${addressId}/edit`
   }
 }
 

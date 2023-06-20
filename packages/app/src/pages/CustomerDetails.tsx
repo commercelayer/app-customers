@@ -7,6 +7,7 @@ import { CustomerWallet } from '#components/CustomerWallet'
 import { ScrollToTop } from '#components/ScrollToTop'
 import { appRoutes } from '#data/routes'
 import {
+  A,
   Button,
   EmptyState,
   PageLayout,
@@ -56,7 +57,11 @@ export function CustomerDetails(): JSX.Element {
   return (
     <PageLayout
       mode={mode}
-      actionButton={<a className='hidden'>Edit</a>}
+      actionButton={
+        <Link href={appRoutes.edit.makePath(customerId)}>
+          <A>Edit</A>
+        </Link>
+      }
       title={
         <SkeletonTemplate isLoading={isLoading}>{pageTitle}</SkeletonTemplate>
       }

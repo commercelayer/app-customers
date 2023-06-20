@@ -1,5 +1,7 @@
 import { CustomerDetails } from '#pages/CustomerDetails'
+import { CustomerEdit } from '#pages/CustomerEdit'
 import { CustomerList } from '#pages/CustomerList'
+import { CustomerNew } from '#pages/CustomerNew'
 import { EditAddress } from '#pages/EditAddress'
 import { ErrorNotFound } from '#pages/ErrorNotFound'
 import { Filters } from '#pages/Filters'
@@ -45,8 +47,14 @@ export function App(): JSX.Element {
                 <Route path={appRoutes.filters.path}>
                   <Filters />
                 </Route>
+                <Route path={appRoutes.new.path}>
+                  <CustomerNew />
+                </Route>
                 <Route path={appRoutes.details.path}>
                   <CustomerDetails />
+                </Route>
+                <Route path={appRoutes.edit.path}>
+                  <CustomerEdit />
                 </Route>
                 <Route path={appRoutes.editAddress.path}>
                   <EditAddress />
