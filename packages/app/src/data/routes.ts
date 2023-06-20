@@ -5,10 +5,14 @@ export type AppRoute = keyof typeof appRoutes
 // a `path` property to be used as patter matching in <Route path> component
 // and `makePath` method to be used to generate the path used in navigation and links
 export const appRoutes = {
-  listAll: {
+  home: {
     path: '/',
+    makePath: () => `/`
+  },
+  listAll: {
+    path: '/list',
     makePath: (filters?: string) =>
-      hasFilterQuery(filters) ? `/?${filters}` : `/`
+      hasFilterQuery(filters) ? `/list/?${filters}` : `/list`
   },
   filters: {
     path: '/filters',

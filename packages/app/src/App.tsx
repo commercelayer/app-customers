@@ -12,7 +12,7 @@ import {
   TokenProvider
 } from '@commercelayer/app-elements'
 import { SWRConfig } from 'swr'
-import { Route, Router, Switch } from 'wouter'
+import { Redirect, Route, Router, Switch } from 'wouter'
 import { appRoutes } from './data/routes'
 
 const isDev = Boolean(import.meta.env.DEV)
@@ -41,6 +41,9 @@ export function App(): JSX.Element {
           <CoreSdkProvider>
             <Router base={basePath}>
               <Switch>
+                <Route path={appRoutes.home.path}>
+                  <Redirect to={appRoutes.listAll.path} />
+                </Route>
                 <Route path={appRoutes.listAll.path}>
                   <CustomerList type='all' />
                 </Route>
