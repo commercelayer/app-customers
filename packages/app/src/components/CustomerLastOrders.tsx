@@ -51,19 +51,15 @@ export const CustomerLastOrders = withSkeletonTemplate((): JSX.Element => {
 
   const [, params] = useRoute<{ customerId: string }>(appRoutes.details.path)
   const customerId = params?.customerId ?? ''
-
   if (customerId.length === 0) return <></>
 
-  const { orders } = useCustomerOrdersDetails(customerId, { pageSize: 6 })
-  const lastOrdersLimit = 5
-  const needShowAll = orders != null && orders?.length > lastOrdersLimit
-  console.log('needShowAll', needShowAll)
+  const { orders } = useCustomerOrdersDetails(customerId, { pageSize: 5 })
+  const showAll = orders != null && orders?.meta.pageCount > 1
+  console.log('showAll', showAll)
   // TODO: Manage show all button and orders page
+  if (orders === undefined || orders?.meta.recordCount === 0) return <></>
 
-  const lastOrders = orders != null ? orders?.slice(0, lastOrdersLimit) : []
-  if (lastOrders.length === 0) return <></>
-
-  const ordersListItems = lastOrders?.map((order, idx) => {
+  const ordersListItems = orders?.map((order, idx) => {
     const displayStatus = getDisplayStatus(order)
     return (
       <ListItem
