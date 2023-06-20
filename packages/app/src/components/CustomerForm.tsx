@@ -85,7 +85,7 @@ export function CustomerForm({
 
       <Spacer top='14'>
         <Button type='submit' disabled={isSubmitting} className='w-full'>
-          Update customer
+          {defaultValues.email.length === 0 ? 'Create' : 'Update'} customer
         </Button>
         <ValidationApiError apiError={apiError} />
       </Spacer>
