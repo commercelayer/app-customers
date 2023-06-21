@@ -20,7 +20,6 @@ import { Link, useLocation, useRoute } from 'wouter'
 
 export function CustomerDetails(): JSX.Element {
   const {
-    canUser,
     settings: { mode }
   } = useTokenProvider()
   const [, setLocation] = useLocation()
@@ -28,9 +27,9 @@ export function CustomerDetails(): JSX.Element {
 
   const customerId = params?.customerId ?? ''
 
-  const { customer, isLoading } = useCustomerDetails(customerId)
+  const { customer, isLoading, error } = useCustomerDetails(customerId)
 
-  if (customerId === undefined || !canUser('read', 'customers')) {
+  if (error != null) {
     return (
       <PageLayout
         title='Customers'

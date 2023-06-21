@@ -6,11 +6,13 @@ import type { KeyedMutator } from 'swr'
 export function useCustomerDetails(id: string): {
   customer: Customer
   isLoading: boolean
+  error: any
   mutateCustomer: KeyedMutator<Customer>
 } {
   const {
     data: customer,
     isLoading,
+    error,
     mutate: mutateCustomer
   } = useCoreApi(
     'customers',
@@ -36,5 +38,5 @@ export function useCustomerDetails(id: string): {
     }
   )
 
-  return { customer, isLoading, mutateCustomer }
+  return { customer, error, isLoading, mutateCustomer }
 }
