@@ -1,11 +1,3 @@
-import { CustomerAddresses } from '#components/CustomerAddresses'
-import { CustomerInfo } from '#components/CustomerInfo'
-import { CustomerLastOrders } from '#components/CustomerLastOrders'
-import { CustomerStatus } from '#components/CustomerStatus'
-import { CustomerTimeline } from '#components/CustomerTimeline'
-import { CustomerWallet } from '#components/CustomerWallet'
-import { ScrollToTop } from '#components/ScrollToTop'
-import { appRoutes } from '#data/routes'
 import {
   A,
   Button,
@@ -15,8 +7,17 @@ import {
   Spacer,
   useTokenProvider
 } from '@commercelayer/app-elements'
-import { useCustomerDetails } from 'src/hooks/useCustomerDetails'
 import { Link, useLocation, useRoute } from 'wouter'
+
+import { CustomerAddresses } from '#components/CustomerAddresses'
+import { CustomerInfo } from '#components/CustomerInfo'
+import { CustomerLastOrders } from '#components/CustomerLastOrders'
+import { CustomerStatus } from '#components/CustomerStatus'
+import { CustomerTimeline } from '#components/CustomerTimeline'
+import { CustomerWallet } from '#components/CustomerWallet'
+import { ScrollToTop } from '#components/ScrollToTop'
+import { appRoutes } from '#data/routes'
+import { useCustomerDetails } from '#hooks/useCustomerDetails'
 
 export function CustomerDetails(): JSX.Element {
   const {

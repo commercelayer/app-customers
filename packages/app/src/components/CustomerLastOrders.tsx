@@ -13,9 +13,9 @@ import {
 } from '@commercelayer/app-elements'
 import type { Order } from '@commercelayer/sdk'
 import isEmpty from 'lodash/isEmpty'
-
-import { useCustomerOrdersList } from 'src/hooks/useCustomerOrdersList'
 import { useRoute } from 'wouter'
+
+import { useCustomerOrdersList } from '#hooks/useCustomerOrdersList'
 
 function orderBillingAddress(order: Order): string | undefined {
   const billingAddress = order?.billing_address

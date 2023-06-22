@@ -22,10 +22,11 @@
     "baseUrl": "./",
     "paths": {
       "#components/*": ["src/components/*"],
-      "#data/*": ["src/data/*"],
-      "#pages/*": ["src/pages/*"],
-      "#mocks": ["src/mocks/index"],
       "#contexts/*": ["src/contexts/*"],
+      "#data/*": ["src/data/*"],
+      "#hooks/*": ["src/hooks/*"],
+      "#mocks": ["src/mocks/index"],
+      "#pages/*": ["src/pages/*"],
       "#utils/*": ["src/utils/*"]
     }
   },
