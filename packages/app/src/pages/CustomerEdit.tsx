@@ -23,7 +23,7 @@ export function CustomerEdit(): JSX.Element {
   const [, params] = useRoute<{ customerId: string }>(appRoutes.edit.path)
   const customerId = params?.customerId ?? ''
 
-  const { customer, isLoading } = useCustomerDetails(customerId)
+  const { customer, isLoading, mutateCustomer } = useCustomerDetails(customerId)
   const [apiError, setApiError] = useState<any>()
   const [isSaving, setIsSaving] = useState(false)
 
@@ -73,8 +73,9 @@ export function CustomerEdit(): JSX.Element {
               setIsSaving(true)
               void sdkClient.customers
                 .update(adaptFormValuesToCustomer(formValues, customer.id))
-                .then(() => {
+                .then((updatedCustomer) => {
                   setLocation(goBackUrl)
+                  void mutateCustomer({ ...updatedCustomer })
                 })
                 .catch((error) => {
                   setApiError(error)
