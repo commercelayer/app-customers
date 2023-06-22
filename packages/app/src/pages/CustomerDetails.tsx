@@ -28,7 +28,11 @@ export function CustomerDetails(): JSX.Element {
 
   const customerId = params?.customerId ?? ''
 
-  const { customer, isLoading, error } = useCustomerDetails(customerId)
+  const { customer, isLoading, error, mutateCustomer } =
+    useCustomerDetails(customerId)
+  mutateCustomer({ ...customer })
+    .then(() => {})
+    .catch(() => {})
 
   if (error != null) {
     return (
