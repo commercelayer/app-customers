@@ -98,17 +98,17 @@ function Select({ options }: { options: CustomerGroup[] }): JSX.Element | null {
     <InputSelect
       label='Group'
       name='customerGroup'
-      initialValues={options.map((customerGroup) => ({
-        value: customerGroup.id,
-        label: customerGroup.name
+      initialValues={options.map(({ id, name }) => ({
+        value: id,
+        label: name
       }))}
       isClearable
       pathToValue='value'
       loadAsyncValues={async (hint) => {
         const list = await fetchCustomerGroups({ sdkClient, hint })
-        return list.map((customerGroup) => ({
-          value: customerGroup.id,
-          label: customerGroup.name
+        return list.map(({ id, name }) => ({
+          value: id,
+          label: name
         }))
       }}
       hint={{
