@@ -11,14 +11,13 @@ import {
   ValidationApiError
 } from '@commercelayer/app-elements-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect, useState } from 'react'
 import { useForm, type UseFormSetError } from 'react-hook-form'
 import { z } from 'zod'
 
+import { useCustomerGroupsList } from '#hooks/useCustomerGroupsList'
 import { fetchCustomerGroups } from '#utils/fetchCustomerGroups'
 
 import type { CustomerGroup } from '@commercelayer/sdk'
-import type { ListResponse } from '@commercelayer/sdk/lib/cjs/resource'
 
 const customerFormSchema = z.object({
   email: z.string().email(),
@@ -29,7 +28,7 @@ export type CustomerFormValues = z.infer<typeof customerFormSchema>
 
 interface Props {
   defaultValues: CustomerFormValues
-  isSubmitting?: boolean
+  isSubmitting: boolean
   onSubmit: (
     formValues: CustomerFormValues,
     setError: UseFormSetError<CustomerFormValues>
@@ -48,17 +47,12 @@ export function CustomerForm({
     resolver: zodResolver(customerFormSchema)
   })
 
-  const { sdkClient } = useCoreSdkProvider()
-  const [fetchedCustomerGroups, setFetchedCustomerGroups] =
-    useState<ListResponse<CustomerGroup>>()
-
-  useEffect(() => {
-    if (sdkClient != null) {
-      void fetchCustomerGroups({
-        sdkClient
-      }).then(setFetchedCustomerGroups)
-    }
-  }, [sdkClient])
+  const { customerGroups } = useCustomerGroupsList({})
+  /*
+   * `isLoadingCustomerGroups` is needed/wanted here because `isLoading` prop available from `useCoreApi` does not reflect with precision the fact that data is filled or not.
+   * It might happen that `isLoading` is `false` and `customerGroups` is still `undefined` for a while.
+   */
+  const isLoadingCustomerGroups = customerGroups === undefined
 
   return (
     <Form
@@ -77,14 +71,18 @@ export function CustomerForm({
         />
       </Spacer>
 
-      {fetchedCustomerGroups != null && (
+      {!isLoadingCustomerGroups && (
         <Spacer bottom='8'>
-          <Select options={fetchedCustomerGroups} />
+          <Select options={customerGroups} />
         </Spacer>
       )}
 
       <Spacer top='14'>
-        <Button type='submit' disabled={isSubmitting} className='w-full'>
+        <Button
+          type='submit'
+          disabled={isSubmitting || isLoadingCustomerGroups}
+          className='w-full'
+        >
           {defaultValues.email.length === 0 ? 'Create' : 'Update'} customer
         </Button>
         <ValidationApiError apiError={apiError} />
