@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { CustomerForm, type CustomerFormValues } from '#components/CustomerForm'
 import { ScrollToTop } from '#components/ScrollToTop'
 import { appRoutes } from '#data/routes'
