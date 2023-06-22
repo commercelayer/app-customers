@@ -1,7 +1,7 @@
 import { CustomerForm, type CustomerFormValues } from '#components/CustomerForm'
 import { ScrollToTop } from '#components/ScrollToTop'
 import { appRoutes } from '#data/routes'
-import { isMock, makeCustomer } from '#mocks'
+import { useCustomerDetails } from '#hooks/useCustomerDetails'
 import {
   Button,
   EmptyState,
@@ -12,7 +12,7 @@ import {
   useTokenProvider
 } from '@commercelayer/app-elements'
 import { type Customer, type CustomerUpdate } from '@commercelayer/sdk'
-import { useEffect, useMemo, useState } from 'react'
+import { useState } from 'react'
 import { Link, useLocation, useRoute } from 'wouter'
 
 export function CustomerEdit(): JSX.Element {
@@ -20,33 +20,16 @@ export function CustomerEdit(): JSX.Element {
   const { sdkClient } = useCoreSdkProvider()
   const [, setLocation] = useLocation()
   const [, params] = useRoute<{ customerId: string }>(appRoutes.edit.path)
+  const customerId = params?.customerId ?? ''
 
-  const [customer, setCustomer] = useState<Customer | null>(makeCustomer())
+  const { customer, isLoading } = useCustomerDetails(customerId)
   const [apiError, setApiError] = useState<any>()
   const [isSaving, setIsSaving] = useState(false)
-  const isLoading = useMemo(
-    () => customer != null && isMock(customer),
-    [customer]
-  )
 
-  const customerId = params?.customerId
   const goBackUrl =
     customerId != null
       ? appRoutes.details.makePath(customerId)
       : appRoutes.listAll.makePath()
-
-  useEffect(() => {
-    if (customerId != null) {
-      sdkClient.customers
-        .retrieve(customerId, {
-          include: ['customer_group']
-        })
-        .then(setCustomer)
-        .catch(() => {
-          setCustomer(null)
-        })
-    }
-  }, [customerId])
 
   if (!canUser('update', 'customers')) {
     return (
