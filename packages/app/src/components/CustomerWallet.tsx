@@ -64,7 +64,7 @@ export const CustomerWallet = withSkeletonTemplate<Props>(({ customer }) => {
     }
   )
 
-  if (customerPaymentSources == null) return <></>
+  if (customerPaymentSources?.length === 0) return <></>
 
   return (
     <>
