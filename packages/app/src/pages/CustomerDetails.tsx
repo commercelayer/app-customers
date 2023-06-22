@@ -66,7 +66,7 @@ export function CustomerDetails(): JSX.Element {
         <SkeletonTemplate isLoading={isLoading}>{pageTitle}</SkeletonTemplate>
       }
       onGoBack={() => {
-        setLocation(appRoutes.listAll.makePath())
+        setLocation(appRoutes.list.makePath())
       }}
     >
       <ScrollToTop />

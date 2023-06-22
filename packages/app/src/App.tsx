@@ -42,9 +42,9 @@ export function App(): JSX.Element {
             <Router base={basePath}>
               <Switch>
                 <Route path={appRoutes.home.path}>
-                  <Redirect to={appRoutes.listAll.path} />
+                  <Redirect to={appRoutes.list.path} />
                 </Route>
-                <Route path={appRoutes.listAll.path}>
+                <Route path={appRoutes.list.path}>
                   <CustomerList type='all' />
                 </Route>
                 <Route path={appRoutes.filters.path}>

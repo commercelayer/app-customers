@@ -21,7 +21,7 @@ export function CustomerNew(): JSX.Element {
   const [apiError, setApiError] = useState<any>()
   const [isSaving, setIsSaving] = useState(false)
 
-  const goBackUrl = appRoutes.listAll.makePath()
+  const goBackUrl = appRoutes.list.makePath()
 
   if (!canUser('create', 'customers')) {
     return (

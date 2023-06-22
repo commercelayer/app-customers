@@ -9,7 +9,7 @@ export const appRoutes = {
     path: '/',
     makePath: () => `/`
   },
-  listAll: {
+  list: {
     path: '/list',
     makePath: (filters?: string) =>
       hasFilterQuery(filters) ? `/list/?${filters}` : `/list`

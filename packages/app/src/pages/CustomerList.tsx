@@ -77,7 +77,7 @@ export function CustomerList({ type }: Props): JSX.Element {
             dashboardUrl != null ? `${dashboardUrl}/hub` : '/'
         }
       : () => {
-          setLocation(appRoutes.listAll.makePath())
+          setLocation(appRoutes.list.makePath())
         }
 
   return (
