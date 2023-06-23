@@ -68,6 +68,7 @@ export function CustomerOrders(): JSX.Element {
               customer_id_eq: customerId,
               status_matches_any: 'placed,approved,cancelled'
             },
+            include: ['billing_address'],
             sort: ['-updated_at']
           }}
           emptyState={<ListEmptyState scope='list' />}
