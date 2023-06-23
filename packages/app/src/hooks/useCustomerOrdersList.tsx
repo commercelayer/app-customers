@@ -30,6 +30,7 @@ export function useCustomerOrdersList({ id, settings }: Props): {
     id,
     {
       filters: { status_matches_any: 'placed,approved,cancelled' },
+      include: ['billing_address'],
       sort: ['-created_at'],
       pageNumber,
       pageSize
