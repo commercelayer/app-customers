@@ -1,6 +1,7 @@
 import type { Resource } from '@commercelayer/sdk/lib/cjs/resource'
 
 export * from './resources/customers'
+export * from './resources/orders'
 
 export const isMockedId = (id: string): boolean => {
   return id.startsWith('fake-')

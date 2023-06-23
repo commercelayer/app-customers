@@ -31,6 +31,10 @@ export const appRoutes = {
     path: '/list/:customerId/edit',
     makePath: (customerId: string) => `/list/${customerId}/edit`
   },
+  orders: {
+    path: '/list/:customerId/orders',
+    makePath: (customerId: string) => `/list/${customerId}/orders`
+  },
   editAddress: {
     path: '/list/:customerId/addresses/:addressId/edit',
     makePath: (customerId: string, addressId: string) =>
