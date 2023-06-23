@@ -2,15 +2,24 @@ import { useCoreApi } from '@commercelayer/app-elements'
 import type { Order } from '@commercelayer/sdk'
 import type { ListResponse } from '@commercelayer/sdk/lib/cjs/resource'
 
-interface UseCustomerOrdersDetailsSettings {
+interface UseCustomerOrdersListSettings {
   pageNumber?: number
   pageSize?: number
 }
 
-export function useCustomerOrdersDetails(
-  id: string,
-  settings?: UseCustomerOrdersDetailsSettings
-): {
+interface Props {
+  id: string
+  settings?: UseCustomerOrdersListSettings
+}
+
+/**
+ * Retrieves customer orders via relationship by customer id.
+ * @param id - Customer `id` used in SDK relationship request.
+ * @param settings - Optional set of SDK request settings.
+ * @returns a list of resolved `Orders` of requested customer.
+ */
+
+export function useCustomerOrdersList({ id, settings }: Props): {
   orders: ListResponse<Order> | undefined
   isLoading: boolean
 } {

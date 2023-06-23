@@ -23,11 +23,11 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       '@commercelayer/app-elements':
-        specifier: ^0.0.38
-        version: 0.0.38(@commercelayer/sdk@5.0.0)(wouter@2.10.0)
+        specifier: ^0.0.40
+        version: 0.0.40(@commercelayer/sdk@5.0.0)(wouter@2.10.0)
       '@commercelayer/app-elements-hook-form':
-        specifier: ^0.0.38
-        version: 0.0.38(@commercelayer/app-elements@0.0.38)(react-hook-form@7.43.9)
+        specifier: ^0.0.40
+        version: 0.0.40(@commercelayer/app-elements@0.0.40)(react-hook-form@7.43.9)
       '@commercelayer/sdk':
         specifier: 5.0.0
         version: 5.0.0
@@ -339,19 +339,19 @@ packages:
     dev: true
     optional: true
 
-  /@commercelayer/app-elements-hook-form@0.0.38(@commercelayer/app-elements@0.0.38)(react-hook-form@7.43.9):
-    resolution: {integrity: sha512-K8U23Tk997+Dfsb4BNIfl5zIbHHsPTm1gQPXp+kNWbeMRnEVd8paT4K/0EqUCe4BXwCQwtdUwYLqNTc3M1JdJw==}
+  /@commercelayer/app-elements-hook-form@0.0.40(@commercelayer/app-elements@0.0.40)(react-hook-form@7.43.9):
+    resolution: {integrity: sha512-y3vqkqpJxZfy1A2KBFLVEvkN8uK3JhpozE7FALLJuVDpC0ga+vYn57L8r1Rl69ifxgIJYPgbNNs3DP/LgTmu8Q==}
     engines: {node: '>=18', pnpm: '>=7'}
     peerDependencies:
-      '@commercelayer/app-elements': 0.0.38
+      '@commercelayer/app-elements': 0.0.40
       react-hook-form: ^7.43.x
     dependencies:
-      '@commercelayer/app-elements': 0.0.38(@commercelayer/sdk@5.0.0)(wouter@2.10.0)
+      '@commercelayer/app-elements': 0.0.40(@commercelayer/sdk@5.0.0)(wouter@2.10.0)
       react-hook-form: 7.43.9(react@18.2.0)
     dev: false
 
-  /@commercelayer/app-elements@0.0.38(@commercelayer/sdk@5.0.0)(wouter@2.10.0):
-    resolution: {integrity: sha512-0ntuXlfFJs1Jnu+Sf+wH+jb17WHhdk3KhjPIIT7HXnJ6xZrMkJ1UPkAKKSoiFUR2rD3DKKc3jkFhvxT1HNiyhA==}
+  /@commercelayer/app-elements@0.0.40(@commercelayer/sdk@5.0.0)(wouter@2.10.0):
+    resolution: {integrity: sha512-MlvGzKxrFar4NH/V6Zhnn8q/j4KlcPrvBYzDbq5CMs8+BTAgVw9B8+LSij/pp9ShQITJRevc7UHH25TdYytpTQ==}
     engines: {node: '>=18', pnpm: '>=7'}
     peerDependencies:
       '@commercelayer/sdk': ^5.x

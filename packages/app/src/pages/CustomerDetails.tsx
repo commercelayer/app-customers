@@ -1,3 +1,14 @@
+import {
+  A,
+  Button,
+  EmptyState,
+  PageLayout,
+  SkeletonTemplate,
+  Spacer,
+  useTokenProvider
+} from '@commercelayer/app-elements'
+import { Link, useLocation, useRoute } from 'wouter'
+
 import { CustomerAddresses } from '#components/CustomerAddresses'
 import { CustomerInfo } from '#components/CustomerInfo'
 import { CustomerLastOrders } from '#components/CustomerLastOrders'
@@ -6,20 +17,10 @@ import { CustomerTimeline } from '#components/CustomerTimeline'
 import { CustomerWallet } from '#components/CustomerWallet'
 import { ScrollToTop } from '#components/ScrollToTop'
 import { appRoutes } from '#data/routes'
-import {
-  Button,
-  EmptyState,
-  PageLayout,
-  SkeletonTemplate,
-  Spacer,
-  useTokenProvider
-} from '@commercelayer/app-elements'
-import { useCustomerDetails } from 'src/hooks/useCustomerDetails'
-import { Link, useLocation, useRoute } from 'wouter'
+import { useCustomerDetails } from '#hooks/useCustomerDetails'
 
 export function CustomerDetails(): JSX.Element {
   const {
-    canUser,
     settings: { mode }
   } = useTokenProvider()
   const [, setLocation] = useLocation()
@@ -27,9 +28,9 @@ export function CustomerDetails(): JSX.Element {
 
   const customerId = params?.customerId ?? ''
 
-  const { customer, isLoading } = useCustomerDetails(customerId)
+  const { customer, isLoading, error } = useCustomerDetails(customerId)
 
-  if (customerId === undefined || !canUser('read', 'customers')) {
+  if (error != null) {
     return (
       <PageLayout
         title='Customers'
@@ -56,12 +57,16 @@ export function CustomerDetails(): JSX.Element {
   return (
     <PageLayout
       mode={mode}
-      actionButton={<a className='hidden'>Edit</a>}
+      actionButton={
+        <Link href={appRoutes.edit.makePath(customerId)}>
+          <A>Edit</A>
+        </Link>
+      }
       title={
         <SkeletonTemplate isLoading={isLoading}>{pageTitle}</SkeletonTemplate>
       }
       onGoBack={() => {
-        setLocation(appRoutes.listAll.makePath())
+        setLocation(appRoutes.list.makePath())
       }}
     >
       <ScrollToTop />

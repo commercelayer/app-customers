@@ -13,9 +13,9 @@ import {
 } from '@commercelayer/app-elements'
 import type { Order } from '@commercelayer/sdk'
 import isEmpty from 'lodash/isEmpty'
-
-import { useCustomerOrdersDetails } from 'src/hooks/useCustomerOrdersDetails'
 import { useRoute } from 'wouter'
+
+import { useCustomerOrdersList } from '#hooks/useCustomerOrdersList'
 
 function orderBillingAddress(order: Order): string | undefined {
   const billingAddress = order?.billing_address
@@ -53,7 +53,10 @@ export const CustomerLastOrders = withSkeletonTemplate((): JSX.Element => {
   const customerId = params?.customerId ?? ''
   if (customerId.length === 0) return <></>
 
-  const { orders } = useCustomerOrdersDetails(customerId, { pageSize: 5 })
+  const { orders } = useCustomerOrdersList({
+    id: customerId,
+    settings: { pageSize: 5 }
+  })
   const showAll = orders != null && orders?.meta.pageCount > 1
   console.log('showAll', showAll)
   // TODO: Manage show all button and orders page

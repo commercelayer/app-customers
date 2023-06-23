@@ -1,4 +1,3 @@
-import { isAttachmentValidNote, noteReferenceOrigin } from '#data/attachments'
 import {
   Legend,
   Spacer,
@@ -12,7 +11,9 @@ import {
 import { type Customer } from '@commercelayer/sdk'
 import isEmpty from 'lodash/isEmpty'
 import { useEffect, useReducer, type Reducer } from 'react'
-import { useCustomerDetails } from 'src/hooks/useCustomerDetails'
+
+import { isAttachmentValidNote, noteReferenceOrigin } from '#data/attachments'
+import { useCustomerDetails } from '#hooks/useCustomerDetails'
 
 interface Props {
   customer: Customer

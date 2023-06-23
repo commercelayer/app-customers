@@ -5,24 +5,36 @@ export type AppRoute = keyof typeof appRoutes
 // a `path` property to be used as patter matching in <Route path> component
 // and `makePath` method to be used to generate the path used in navigation and links
 export const appRoutes = {
-  listAll: {
+  home: {
     path: '/',
+    makePath: () => `/`
+  },
+  list: {
+    path: '/list',
     makePath: (filters?: string) =>
-      hasFilterQuery(filters) ? `/?${filters}` : `/`
+      hasFilterQuery(filters) ? `/list/?${filters}` : `/list`
   },
   filters: {
     path: '/filters',
     makePath: (filters?: string) =>
       hasFilterQuery(filters) ? `/filters/?${filters}` : `/filters`
   },
+  new: {
+    path: `/new`,
+    makePath: () => `/new`
+  },
   details: {
-    path: '/:customerId',
-    makePath: (customerId: string) => `/${customerId}`
+    path: '/list/:customerId',
+    makePath: (customerId: string) => `/list/${customerId}`
+  },
+  edit: {
+    path: '/list/:customerId/edit',
+    makePath: (customerId: string) => `/list/${customerId}/edit`
   },
   editAddress: {
-    path: '/:customerId/addresses/:addressId/edit',
+    path: '/list/:customerId/addresses/:addressId/edit',
     makePath: (customerId: string, addressId: string) =>
-      `/${customerId}/addresses/${addressId}/edit`
+      `/list/${customerId}/addresses/${addressId}/edit`
   }
 }
 

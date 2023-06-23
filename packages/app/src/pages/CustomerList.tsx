@@ -5,6 +5,7 @@ import { filtersAdapters, getActiveFilterCountFromUrl } from '#data/filters'
 import { filtersByListType, type ListType } from '#data/lists'
 import { appRoutes } from '#data/routes'
 import {
+  A,
   PageLayout,
   ResourceList,
   SearchBar,
@@ -16,7 +17,7 @@ import { type QueryParamsList } from '@commercelayer/sdk'
 import { type QueryFilter } from '@commercelayer/sdk/lib/cjs/query'
 import isEmpty from 'lodash/isEmpty'
 import { useEffect, useState } from 'react'
-import { useLocation } from 'wouter'
+import { Link, useLocation } from 'wouter'
 import { navigate, useSearch } from 'wouter/use-location'
 
 interface Props {
@@ -76,7 +77,7 @@ export function CustomerList({ type }: Props): JSX.Element {
             dashboardUrl != null ? `${dashboardUrl}/hub` : '/'
         }
       : () => {
-          setLocation(appRoutes.listAll.makePath())
+          setLocation(appRoutes.list.makePath())
         }
 
   return (
@@ -108,6 +109,11 @@ export function CustomerList({ type }: Props): JSX.Element {
         <ResourceList
           sdkClient={sdkClient}
           title={isUserFiltered ? 'Results' : 'All customers'}
+          actionButton={
+            <Link href={appRoutes.new.makePath()}>
+              <A>Add new</A>
+            </Link>
+          }
           type='customers'
           query={sdkQuery}
           emptyState={

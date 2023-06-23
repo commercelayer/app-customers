@@ -40,7 +40,7 @@ export function EditAddress(): JSX.Element {
   const goBackUrl =
     customerId != null
       ? appRoutes.details.makePath(customerId)
-      : appRoutes.listAll.makePath()
+      : appRoutes.list.makePath()
 
   useEffect(() => {
     if (customerId != null) {
