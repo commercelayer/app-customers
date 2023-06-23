@@ -69,8 +69,6 @@ export function CustomerForm({
             text: <Text variant='info'>The customer's email address</Text>
           }}
           autoComplete='off'
-          data-lpignore='true'
-          data-form-type='other'
         />
       </Spacer>
 
