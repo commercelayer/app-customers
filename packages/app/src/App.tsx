@@ -2,6 +2,7 @@ import { CustomerDetails } from '#pages/CustomerDetails'
 import { CustomerEdit } from '#pages/CustomerEdit'
 import { CustomerList } from '#pages/CustomerList'
 import { CustomerNew } from '#pages/CustomerNew'
+import { CustomerOrders } from '#pages/CustomerOrders'
 import { EditAddress } from '#pages/EditAddress'
 import { ErrorNotFound } from '#pages/ErrorNotFound'
 import { Filters } from '#pages/Filters'
@@ -58,6 +59,9 @@ export function App(): JSX.Element {
                 </Route>
                 <Route path={appRoutes.edit.path}>
                   <CustomerEdit />
+                </Route>
+                <Route path={appRoutes.orders.path}>
+                  <CustomerOrders />
                 </Route>
                 <Route path={appRoutes.editAddress.path}>
                   <EditAddress />
