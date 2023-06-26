@@ -16,7 +16,10 @@ interface Props {
 export const CustomerStatus = withSkeletonTemplate<Props>(
   ({ customer }): JSX.Element => {
     const customerStatus = getCustomerStatus(customer)
-    const { orders, isLoading } = useCustomerOrdersList({ id: customer.id })
+    const { orders, isLoading } = useCustomerOrdersList({
+      id: customer.id,
+      settings: { pageSize: 5 }
+    })
 
     return (
       <SkeletonTemplate isLoading={isLoading}>
