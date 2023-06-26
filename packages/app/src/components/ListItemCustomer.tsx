@@ -26,7 +26,7 @@ function ListItemCustomerComponent({
             {resource.email}
           </Text>
           <Text tag='div' weight='medium' size='small' variant='info'>
-            {resource.orders?.length ?? 0} orders
+            {resource.total_orders_count ?? 0} orders
             {!isEmpty(resource.customer_group)
               ? ` · ${resource.customer_group?.name}`
               : ''}

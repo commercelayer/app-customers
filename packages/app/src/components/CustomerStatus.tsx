@@ -1,5 +1,7 @@
+import { useCustomerOrdersList } from '#hooks/useCustomerOrdersList'
 import { getCustomerStatus } from '#utils/getCustomerStatus'
 import {
+  SkeletonTemplate,
   Spacer,
   Stack,
   Text,
@@ -11,37 +13,36 @@ interface Props {
   customer: Customer
 }
 
-function ordersCount(customer: Customer): number {
-  return customer.orders?.length ?? 0
-}
-
 export const CustomerStatus = withSkeletonTemplate<Props>(
   ({ customer }): JSX.Element => {
     const customerStatus = getCustomerStatus(customer)
+    const { orders, isLoading } = useCustomerOrdersList({ id: customer.id })
 
     return (
-      <Stack>
-        <div>
-          <Spacer bottom='2'>
-            <Text size='regular' tag='div' variant='info'>
-              Orders
+      <SkeletonTemplate isLoading={isLoading}>
+        <Stack>
+          <div>
+            <Spacer bottom='2'>
+              <Text size='regular' tag='div' variant='info'>
+                Orders
+              </Text>
+            </Spacer>
+            <Text weight='semibold' className='text-lg'>
+              {orders?.meta.recordCount}
             </Text>
-          </Spacer>
-          <Text weight='semibold' className='text-lg'>
-            {ordersCount(customer)}
-          </Text>
-        </div>
-        <div>
-          <Spacer bottom='2'>
-            <Text size='regular' tag='div' variant='info'>
-              Type
+          </div>
+          <div>
+            <Spacer bottom='2'>
+              <Text size='regular' tag='div' variant='info'>
+                Type
+              </Text>
+            </Spacer>
+            <Text weight='semibold' className='text-lg capitalize'>
+              {customerStatus}
             </Text>
-          </Spacer>
-          <Text weight='semibold' className='text-lg capitalize'>
-            {customerStatus}
-          </Text>
-        </div>
-      </Stack>
+          </div>
+        </Stack>
+      </SkeletonTemplate>
     )
   }
 )
