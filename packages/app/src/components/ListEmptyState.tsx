@@ -1,18 +1,33 @@
-import { A, EmptyState } from '@commercelayer/app-elements'
+import {
+  A,
+  Button,
+  EmptyState,
+  useTokenProvider
+} from '@commercelayer/app-elements'
+import { Link } from 'wouter'
+
+import { appRoutes } from '#data/routes'
 
 interface Props {
   scope?: 'history' | 'filters' | 'list'
 }
 
 export function ListEmptyState({ scope = 'history' }: Props): JSX.Element {
+  const { canUser } = useTokenProvider()
+
   if (scope === 'list') {
     return (
       <EmptyState
-        title='All good here'
+        title='No customers yet!'
         description={
-          <div>
-            <p>There are no customers for the current list.</p>
-          </div>
+          canUser('create', 'customers') && 'Create your first customer'
+        }
+        action={
+          canUser('create', 'customers') && (
+            <Link href={appRoutes.new.makePath()}>
+              <Button variant='primary'>New customer</Button>
+            </Link>
+          )
         }
       />
     )
