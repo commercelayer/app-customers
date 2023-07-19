@@ -23,11 +23,11 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       '@commercelayer/app-elements':
-        specifier: ^0.0.40
-        version: 0.0.40(@commercelayer/sdk@5.6.0)(wouter@2.10.0)
+        specifier: ^0.0.52
+        version: 0.0.52(@commercelayer/sdk@5.6.0)(wouter@2.10.0)
       '@commercelayer/app-elements-hook-form':
-        specifier: ^0.0.40
-        version: 0.0.40(@commercelayer/app-elements@0.0.40)(react-hook-form@7.43.9)
+        specifier: ^0.0.52
+        version: 0.0.52(@commercelayer/app-elements@0.0.52)(@commercelayer/sdk@5.6.0)(query-string@8.1.0)(react-dom@18.2.0)(react-hook-form@7.43.9)(react@18.2.0)
       '@commercelayer/sdk':
         specifier: 5.6.0
         version: 5.6.0
@@ -339,19 +339,27 @@ packages:
     dev: true
     optional: true
 
-  /@commercelayer/app-elements-hook-form@0.0.40(@commercelayer/app-elements@0.0.40)(react-hook-form@7.43.9):
-    resolution: {integrity: sha512-y3vqkqpJxZfy1A2KBFLVEvkN8uK3JhpozE7FALLJuVDpC0ga+vYn57L8r1Rl69ifxgIJYPgbNNs3DP/LgTmu8Q==}
+  /@commercelayer/app-elements-hook-form@0.0.52(@commercelayer/app-elements@0.0.52)(@commercelayer/sdk@5.6.0)(query-string@8.1.0)(react-dom@18.2.0)(react-hook-form@7.43.9)(react@18.2.0):
+    resolution: {integrity: sha512-EuEyBi3e5mlmDLxSqt7F45F5thY8p6dQq9S+jKfc4EvSZrAwktDLZtyBdM0daMViEZYcBe8Zr+YjwOqrvB9dNg==}
     engines: {node: '>=18', pnpm: '>=7'}
     peerDependencies:
-      '@commercelayer/app-elements': 0.0.40
+      '@commercelayer/app-elements': 0.0.52
+      '@commercelayer/sdk': ^5.x
+      query-string: ^8.1.x
+      react: ^18.2.x
+      react-dom: ^18.2.x
       react-hook-form: ^7.43.x
     dependencies:
-      '@commercelayer/app-elements': 0.0.40(@commercelayer/sdk@5.6.0)(wouter@2.10.0)
+      '@commercelayer/app-elements': 0.0.52(@commercelayer/sdk@5.6.0)(wouter@2.10.0)
+      '@commercelayer/sdk': 5.6.0
+      query-string: 8.1.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
       react-hook-form: 7.43.9(react@18.2.0)
     dev: false
 
-  /@commercelayer/app-elements@0.0.40(@commercelayer/sdk@5.6.0)(wouter@2.10.0):
-    resolution: {integrity: sha512-MlvGzKxrFar4NH/V6Zhnn8q/j4KlcPrvBYzDbq5CMs8+BTAgVw9B8+LSij/pp9ShQITJRevc7UHH25TdYytpTQ==}
+  /@commercelayer/app-elements@0.0.52(@commercelayer/sdk@5.6.0)(wouter@2.10.0):
+    resolution: {integrity: sha512-PaY1aG8jU2VQ3ITRD5k69rC4oFJNrhzMjDE+EdhvElcdBcCMqKSA1olpIW+SMEGdfaJvf/qMtc2waX/+HOmggw==}
     engines: {node: '>=18', pnpm: '>=7'}
     peerDependencies:
       '@commercelayer/sdk': ^5.x
@@ -374,6 +382,7 @@ packages:
       ts-invariant: 0.10.3
       type-fest: 3.9.0
       wouter: 2.10.0(react@18.2.0)
+      zod: 3.21.4
     dev: false
 
   /@commercelayer/eslint-config-ts-react@1.0.0(eslint@8.37.0)(react@18.2.0)(typescript@5.0.3):

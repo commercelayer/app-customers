@@ -4,6 +4,7 @@ import { CustomerList } from '#pages/CustomerList'
 import { CustomerNew } from '#pages/CustomerNew'
 import { CustomerOrders } from '#pages/CustomerOrders'
 import { EditAddress } from '#pages/EditAddress'
+import { EditMetadata } from '#pages/EditMetadata'
 import { ErrorNotFound } from '#pages/ErrorNotFound'
 import { Filters } from '#pages/Filters'
 import {
@@ -65,6 +66,9 @@ export function App(): JSX.Element {
                 </Route>
                 <Route path={appRoutes.editAddress.path}>
                   <EditAddress />
+                </Route>
+                <Route path={appRoutes.editMetaData.path}>
+                  <EditMetadata />
                 </Route>
                 <Route>
                   <ErrorNotFound />

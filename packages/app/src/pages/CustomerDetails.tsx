@@ -12,6 +12,7 @@ import { Link, useLocation, useRoute } from 'wouter'
 import { CustomerAddresses } from '#components/CustomerAddresses'
 import { CustomerInfo } from '#components/CustomerInfo'
 import { CustomerLastOrders } from '#components/CustomerLastOrders'
+import { CustomerMetaData } from '#components/CustomerMetaData'
 import { CustomerStatus } from '#components/CustomerStatus'
 import { CustomerTimeline } from '#components/CustomerTimeline'
 import { CustomerWallet } from '#components/CustomerWallet'
@@ -84,6 +85,9 @@ export function CustomerDetails(): JSX.Element {
           </Spacer>
           <Spacer top='14'>
             <CustomerAddresses customer={customer} />
+          </Spacer>
+          <Spacer top='14'>
+            <CustomerMetaData customer={customer} />
           </Spacer>
           <Spacer top='14'>
             <CustomerTimeline customer={customer} />
