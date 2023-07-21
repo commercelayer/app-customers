@@ -39,6 +39,10 @@ export const appRoutes = {
     path: '/list/:customerId/addresses/:addressId/edit',
     makePath: (customerId: string, addressId: string) =>
       `/list/${customerId}/addresses/${addressId}/edit`
+  },
+  editMetaData: {
+    path: '/list/:customerId/metadata/edit',
+    makePath: (customerId: string) => `/list/${customerId}/metadata/edit`
   }
 }
 
