@@ -31,7 +31,8 @@ const pageTitle: Record<ListType, string> = {
 export function CustomerList({ type }: Props): JSX.Element {
   const {
     dashboardUrl,
-    settings: { mode }
+    settings: { mode },
+    canUser
   } = useTokenProvider()
   const { sdkClient } = useCoreSdkProvider()
   const search = useSearch()
@@ -110,9 +111,11 @@ export function CustomerList({ type }: Props): JSX.Element {
           sdkClient={sdkClient}
           title={isUserFiltered ? 'Results' : 'All customers'}
           actionButton={
-            <Link href={appRoutes.new.makePath()}>
-              <A>Add new</A>
-            </Link>
+            canUser('create', 'customers') && (
+              <Link href={appRoutes.new.makePath()}>
+                <A>Add new</A>
+              </Link>
+            )
           }
           type='customers'
           query={sdkQuery}
