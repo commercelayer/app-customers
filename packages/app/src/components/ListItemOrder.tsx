@@ -100,6 +100,7 @@ function ListItemOrderComponent({
           {getPaymentStatusName(resource.payment_status)}
         </Text>
       </div>
+      {canAccess('orders') && <Icon name='caretRight' />}
     </ListItem>
   )
 }
