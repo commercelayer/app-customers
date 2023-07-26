@@ -92,15 +92,18 @@ function ListItemOrderComponent({
           {orderStatusText(resource)}
         </Text>
       </div>
-      <div>
-        <Text tag='div' weight='semibold'>
-          {resource.formatted_total_amount}
-        </Text>
-        <Text tag='div' weight='medium' size='small' variant='info'>
-          {getPaymentStatusName(resource.payment_status)}
-        </Text>
-      </div>
-      {canAccess('orders') && <Icon name='caretRight' />}
+      {canAccess('orders') ? (
+        <Icon name='caretRight' />
+      ) : (
+        <div>
+          <Text tag='div' weight='semibold'>
+            {resource.formatted_total_amount}
+          </Text>
+          <Text tag='div' weight='medium' size='small' variant='info'>
+            {getPaymentStatusName(resource.payment_status)}
+          </Text>
+        </div>
+      )}
     </ListItem>
   )
 }
