@@ -1,3 +1,4 @@
+import { isMockedId } from '#mocks'
 import { useCoreApi } from '@commercelayer/app-elements'
 import type { Order } from '@commercelayer/sdk'
 import type { ListResponse } from '@commercelayer/sdk/lib/cjs/resource'
@@ -26,17 +27,23 @@ export function useCustomerOrdersList({ id, settings }: Props): {
   const pageNumber = settings?.pageNumber ?? 1
   const pageSize = settings?.pageSize ?? 25
 
-  const { data: orders, isLoading } = useCoreApi('customers', 'orders', [
-    id,
-    {
-      filters: { status_matches_any: 'placed,approved,cancelled' },
-      include: ['billing_address'],
-      sort: ['-created_at'],
-      pageNumber,
-      pageSize
-    },
-    {}
-  ])
+  const { data: orders, isLoading } = useCoreApi(
+    'customers',
+    'orders',
+    isMockedId(id)
+      ? null
+      : [
+          id,
+          {
+            filters: { status_matches_any: 'placed,approved,cancelled' },
+            include: ['billing_address'],
+            sort: ['-created_at'],
+            pageNumber,
+            pageSize
+          },
+          {}
+        ]
+  )
 
   return { orders, isLoading }
 }
