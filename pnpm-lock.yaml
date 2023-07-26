@@ -23,11 +23,11 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       '@commercelayer/app-elements':
-        specifier: ^0.0.56
-        version: 0.0.56(@commercelayer/sdk@5.9.1)(wouter@2.10.0)
+        specifier: ^0.0.57
+        version: 0.0.57(@commercelayer/sdk@5.9.1)(wouter@2.10.0)
       '@commercelayer/app-elements-hook-form':
-        specifier: ^0.0.56
-        version: 0.0.56(@commercelayer/app-elements@0.0.56)(@commercelayer/sdk@5.9.1)(query-string@8.1.0)(react-dom@18.2.0)(react-hook-form@7.43.9)(react@18.2.0)
+        specifier: ^0.0.57
+        version: 0.0.57(@commercelayer/app-elements@0.0.57)(@commercelayer/sdk@5.9.1)(query-string@8.1.0)(react-dom@18.2.0)(react-hook-form@7.43.9)(react@18.2.0)
       '@commercelayer/sdk':
         specifier: 5.9.1
         version: 5.9.1
@@ -339,18 +339,18 @@ packages:
     dev: true
     optional: true
 
-  /@commercelayer/app-elements-hook-form@0.0.56(@commercelayer/app-elements@0.0.56)(@commercelayer/sdk@5.9.1)(query-string@8.1.0)(react-dom@18.2.0)(react-hook-form@7.43.9)(react@18.2.0):
-    resolution: {integrity: sha512-qHmHs7t0/Rdv8XmAVYUn0x393VlVsTeC1Xt9GIKGGYc2aNOR8CE41Mj3JlgJNNUmaMWJZsBYc1ha31FFh6CoMA==}
+  /@commercelayer/app-elements-hook-form@0.0.57(@commercelayer/app-elements@0.0.57)(@commercelayer/sdk@5.9.1)(query-string@8.1.0)(react-dom@18.2.0)(react-hook-form@7.43.9)(react@18.2.0):
+    resolution: {integrity: sha512-2vPQtpEq1Molyt++hdUAPTlNC6VvAjdzWCZbqrD8V5f0uWR8tJ8HW96ZSQ2iLlSvDtrciB/t6OQpS5Es4/c8fQ==}
     engines: {node: '>=18', pnpm: '>=7'}
     peerDependencies:
-      '@commercelayer/app-elements': 0.0.56
+      '@commercelayer/app-elements': 0.0.57
       '@commercelayer/sdk': ^5.x
       query-string: ^8.1.x
       react: ^18.2.x
       react-dom: ^18.2.x
       react-hook-form: ^7.43.x
     dependencies:
-      '@commercelayer/app-elements': 0.0.56(@commercelayer/sdk@5.9.1)(wouter@2.10.0)
+      '@commercelayer/app-elements': 0.0.57(@commercelayer/sdk@5.9.1)(wouter@2.10.0)
       '@commercelayer/sdk': 5.9.1
       query-string: 8.1.0
       react: 18.2.0
@@ -358,8 +358,8 @@ packages:
       react-hook-form: 7.43.9(react@18.2.0)
     dev: false
 
-  /@commercelayer/app-elements@0.0.56(@commercelayer/sdk@5.9.1)(wouter@2.10.0):
-    resolution: {integrity: sha512-UKtveIO2RH2pQnXcEdobm1xa0T/zBUwh2rcN43i0P847aOSYCyoSVQSSkLv+Wip0hpGPdtCwXY9IQ9wVEYqcjQ==}
+  /@commercelayer/app-elements@0.0.57(@commercelayer/sdk@5.9.1)(wouter@2.10.0):
+    resolution: {integrity: sha512-2GA09iMAWoAs4T2Qw1UwSvRB/3GrHuZOtpVat+hz/IOEfw/sE+z+NeaCb11y5daiCkc9bU8VbNWhAoXVlxJb/g==}
     engines: {node: '>=18', pnpm: '>=7'}
     peerDependencies:
       '@commercelayer/sdk': ^5.x
@@ -1292,10 +1292,6 @@ packages:
       config-chain: 1.1.13
     dev: true
 
-  /@popperjs/core@2.11.7:
-    resolution: {integrity: sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==}
-    dev: false
-
   /@popperjs/core@2.11.8:
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
     dev: false
@@ -1444,10 +1440,10 @@ packages:
   /@types/react-datepicker@4.15.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-kr10s8ex4+MmCJmzdhA9kfmoMQBmsW5uDYDlH+8f/PgStrp7rRaz23Y/cvTiMgvESVq8ujDh4SOo6jlSwEw13g==}
     dependencies:
-      '@popperjs/core': 2.11.7
+      '@popperjs/core': 2.11.8
       '@types/react': 18.2.16
       date-fns: 2.30.0
-      react-popper: 2.3.0(@popperjs/core@2.11.7)(react-dom@18.2.0)(react@18.2.0)
+      react-popper: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.2.0)(react@18.2.0)
     transitivePeerDependencies:
       - react
       - react-dom
@@ -6266,20 +6262,6 @@ packages:
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
-  /react-popper@2.3.0(@popperjs/core@2.11.7)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-e1hj8lL3uM+sgSR4Lxzn5h1GxBlpa4CQz0XLF8kx4MDrDRWY0Ena4c97PUeSX9i5W3UAfDP0z0FXCTQkoXUl3Q==}
-    peerDependencies:
-      '@popperjs/core': ^2.0.0
-      react: ^16.8.0 || ^17 || ^18
-      react-dom: ^16.8.0 || ^17 || ^18
-    dependencies:
-      '@popperjs/core': 2.11.7
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-fast-compare: 3.2.1
-      warning: 4.0.3
     dev: false
 
   /react-popper@2.3.0(@popperjs/core@2.11.8)(react-dom@18.2.0)(react@18.2.0):
