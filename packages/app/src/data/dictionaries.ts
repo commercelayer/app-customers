@@ -42,7 +42,8 @@ export function getOrderStatusName(status: Order['status']): string {
     cancelled: 'Cancelled',
     draft: 'Draft',
     pending: 'Pending',
-    placed: 'Placed'
+    placed: 'Placed',
+    editing: 'Editing'
   }
 
   return dictionary[status]

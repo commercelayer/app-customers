@@ -87,8 +87,8 @@ function List({
                             : [...field.value, customerGroup.id]
                         )
                       }}
+                      icon={<AvatarLetter text={customerGroup.name} />}
                     >
-                      <AvatarLetter text={customerGroup.name} />
                       <Text weight='semibold'>{customerGroup.name}</Text>
                     </InputCheckbox>
                   </Spacer>
