@@ -36,7 +36,7 @@ export function useCustomerOrdersList({ id, settings }: Props): {
           id,
           {
             filters: { status_matches_any: 'placed,approved,cancelled' },
-            include: ['billing_address'],
+            include: ['billing_address', 'market'],
             sort: ['-created_at'],
             pageNumber,
             pageSize
@@ -44,6 +44,8 @@ export function useCustomerOrdersList({ id, settings }: Props): {
           {}
         ]
   )
+
+  console.log(orders)
 
   return { orders, isLoading }
 }
