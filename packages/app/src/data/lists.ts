@@ -1,8 +1,8 @@
-import { type FilterFormValues } from '#data/filters'
+import type { FormFullValues } from '@commercelayer/app-elements-hook-form/dist/filters/methods/types'
 
 export type ListType = 'all'
 
-export const filtersByListType: Record<ListType, FilterFormValues> = {
+export const presets: Record<ListType, FormFullValues> = {
   all: {
     customerGroup: [],
     status: [],

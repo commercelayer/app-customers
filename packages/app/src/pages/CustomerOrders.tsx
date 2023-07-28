@@ -71,7 +71,7 @@ export function CustomerOrders(): JSX.Element {
             include: ['billing_address'],
             sort: ['-updated_at']
           }}
-          emptyState={<ListEmptyState scope='list' />}
+          emptyState={<ListEmptyState scope='presetView' />}
           Item={ListItemOrder}
         />
       </Spacer>

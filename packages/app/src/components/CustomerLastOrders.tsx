@@ -7,8 +7,8 @@ import {
 } from '@commercelayer/app-elements'
 import { Link, useRoute } from 'wouter'
 
+import { ListItemOrder } from '#components/ListItemOrder'
 import { useCustomerOrdersList } from '#hooks/useCustomerOrdersList'
-import { ListItemOrder } from './ListItemOrder'
 
 export const CustomerLastOrders = withSkeletonTemplate((): JSX.Element => {
   const [, params] = useRoute<{ customerId: string }>(appRoutes.details.path)
