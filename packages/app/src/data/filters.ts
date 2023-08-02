@@ -24,7 +24,7 @@ export const instructions: FiltersInstructions = [
     type: 'options',
     sdk: {
       predicate: 'status_in',
-      restrictToOptions: true
+      defaultOptions: ['prospect', 'acquired', 'repeat']
     },
     render: {
       component: 'toggleButtons',

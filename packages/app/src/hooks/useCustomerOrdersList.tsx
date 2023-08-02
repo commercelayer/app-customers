@@ -45,7 +45,5 @@ export function useCustomerOrdersList({ id, settings }: Props): {
         ]
   )
 
-  console.log(orders)
-
   return { orders, isLoading }
 }
