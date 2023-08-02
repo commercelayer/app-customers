@@ -39,34 +39,6 @@ export const instructions: FiltersInstructions = [
     }
   },
   {
-    label: 'Type',
-    type: 'options',
-    sdk: {
-      predicate: 'password_present',
-      parseFormValue: (value) =>
-        !!(
-          Array.isArray(value) &&
-          value.length === 1 &&
-          value[0] === 'registered'
-        )
-    },
-    /* ...(type.length === 0 || type.length > 1
-      ? {}
-      : {
-          [`password${type[0] === 'registered' ? '_present' : '_blank'}`]: true
-        }), */
-    render: {
-      component: 'toggleButtons',
-      props: {
-        mode: 'multi',
-        options: [
-          { value: 'guest', label: 'Guest' },
-          { value: 'registered', label: 'Registered' }
-        ]
-      }
-    }
-  },
-  {
     label: 'Search',
     type: 'textSearch',
     sdk: {
