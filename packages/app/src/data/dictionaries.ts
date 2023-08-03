@@ -1,5 +1,4 @@
 import type { Customer, Order } from '@commercelayer/sdk'
-import { type FilterableType } from './filters'
 import { type UITriggerAttributes } from './status'
 
 export function getCustomerStatusName(status: Customer['status']): string {
@@ -10,15 +9,6 @@ export function getCustomerStatusName(status: Customer['status']): string {
   }
 
   return dictionary[status]
-}
-
-export function getCustomerTypeName(type: FilterableType): string {
-  const dictionary: Record<typeof type, string> = {
-    guest: 'Guest',
-    registered: 'Registered'
-  }
-
-  return dictionary[type]
 }
 
 /** Ex-Orders */
@@ -42,7 +32,8 @@ export function getOrderStatusName(status: Order['status']): string {
     cancelled: 'Cancelled',
     draft: 'Draft',
     pending: 'Pending',
-    placed: 'Placed'
+    placed: 'Placed',
+    editing: 'Editing'
   }
 
   return dictionary[status]

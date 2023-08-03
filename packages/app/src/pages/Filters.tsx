@@ -1,18 +1,13 @@
-import { FilterFieldCustomerGroup } from '#components/FilterFieldCustomerGroup'
-import { FilterFieldStatus } from '#components/FilterFieldStatus'
-import { FilterFieldType } from '#components/FilterFieldType'
-import { filtersAdapters, type FilterFormValues } from '#data/filters'
+import { instructions } from '#data/filters'
 import { appRoutes } from '#data/routes'
-import { Button, PageLayout, Spacer } from '@commercelayer/app-elements'
-import { Form } from '@commercelayer/app-elements-hook-form'
-import { useForm } from 'react-hook-form'
+import { PageLayout } from '@commercelayer/app-elements'
+import { useFilters } from '@commercelayer/app-elements-hook-form'
 import { useLocation } from 'wouter'
 
 export function Filters(): JSX.Element {
   const [, setLocation] = useLocation()
-
-  const methods = useForm<FilterFormValues>({
-    defaultValues: filtersAdapters.fromUrlQueryToFormValues(location.search)
+  const { FiltersForm, adapters } = useFilters({
+    instructions
   })
 
   return (
@@ -21,39 +16,18 @@ export function Filters(): JSX.Element {
       onGoBack={() => {
         setLocation(
           appRoutes.list.makePath(
-            filtersAdapters.fromUrlQueryToUrlQuery(location.search)
+            adapters.adaptUrlQueryToUrlQuery({
+              queryString: location.search
+            })
           )
         )
       }}
     >
-      <Form
-        {...methods}
-        onSubmit={(formValues) => {
-          setLocation(
-            appRoutes.list.makePath(
-              filtersAdapters.fromFormValuesToUrlQuery(formValues)
-            )
-          )
+      <FiltersForm
+        onSubmit={(filtersQueryString) => {
+          setLocation(appRoutes.list.makePath(filtersQueryString))
         }}
-      >
-        <Spacer bottom='14'>
-          <FilterFieldCustomerGroup />
-        </Spacer>
-
-        <Spacer bottom='14'>
-          <FilterFieldStatus />
-        </Spacer>
-
-        <Spacer bottom='14'>
-          <FilterFieldType />
-        </Spacer>
-
-        <Spacer bottom='14'>
-          <Button type='submit' className='w-full'>
-            Apply filters
-          </Button>
-        </Spacer>
-      </Form>
+      />
     </PageLayout>
   )
 }

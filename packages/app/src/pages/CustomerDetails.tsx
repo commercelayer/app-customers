@@ -5,6 +5,7 @@ import {
   PageLayout,
   SkeletonTemplate,
   Spacer,
+  goBack,
   useTokenProvider
 } from '@commercelayer/app-elements'
 import { Link, useLocation, useRoute } from 'wouter'
@@ -36,14 +37,14 @@ export function CustomerDetails(): JSX.Element {
       <PageLayout
         title='Customers'
         onGoBack={() => {
-          setLocation(appRoutes.filters.makePath())
+          setLocation(appRoutes.list.makePath())
         }}
         mode={mode}
       >
         <EmptyState
           title='Not authorized'
           action={
-            <Link href={appRoutes.filters.makePath()}>
+            <Link href={appRoutes.list.makePath()}>
               <Button variant='primary'>Go back</Button>
             </Link>
           }
@@ -67,7 +68,10 @@ export function CustomerDetails(): JSX.Element {
         <SkeletonTemplate isLoading={isLoading}>{pageTitle}</SkeletonTemplate>
       }
       onGoBack={() => {
-        setLocation(appRoutes.list.makePath())
+        goBack({
+          setLocation,
+          defaultRelativePath: appRoutes.list.makePath()
+        })
       }}
     >
       <ScrollToTop />

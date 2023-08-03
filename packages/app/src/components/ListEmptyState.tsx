@@ -9,13 +9,13 @@ import { Link } from 'wouter'
 import { appRoutes } from '#data/routes'
 
 interface Props {
-  scope?: 'history' | 'filters' | 'list'
+  scope?: 'history' | 'userFiltered' | 'presetView'
 }
 
 export function ListEmptyState({ scope = 'history' }: Props): JSX.Element {
   const { canUser } = useTokenProvider()
 
-  if (scope === 'list') {
+  if (scope === 'presetView') {
     return (
       <EmptyState
         title='No customers yet!'
@@ -33,7 +33,7 @@ export function ListEmptyState({ scope = 'history' }: Props): JSX.Element {
     )
   }
 
-  if (scope === 'filters') {
+  if (scope === 'userFiltered') {
     return (
       <EmptyState
         title='No customers found!'

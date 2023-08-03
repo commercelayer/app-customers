@@ -1,23 +1,15 @@
-import { FiltersNav } from '#components/FiltersNav'
 import { ListEmptyState } from '#components/ListEmptyState'
 import { ListItemCustomer } from '#components/ListItemCustomer'
-import { filtersAdapters, getActiveFilterCountFromUrl } from '#data/filters'
-import { filtersByListType, type ListType } from '#data/lists'
+import { instructions } from '#data/filters'
+import { presets, type ListType } from '#data/lists'
 import { appRoutes } from '#data/routes'
 import {
-  A,
   PageLayout,
-  ResourceList,
-  SearchBar,
   Spacer,
-  useCoreSdkProvider,
   useTokenProvider
 } from '@commercelayer/app-elements'
-import { type QueryParamsList } from '@commercelayer/sdk'
-import { type QueryFilter } from '@commercelayer/sdk/lib/cjs/query'
-import isEmpty from 'lodash/isEmpty'
-import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'wouter'
+import { useFilters } from '@commercelayer/app-elements-hook-form'
+import { useLocation } from 'wouter'
 import { navigate, useSearch } from 'wouter/use-location'
 
 interface Props {
@@ -31,45 +23,22 @@ const pageTitle: Record<ListType, string> = {
 export function CustomerList({ type }: Props): JSX.Element {
   const {
     dashboardUrl,
-    settings: { mode },
-    canUser
+    settings: { mode }
   } = useTokenProvider()
-  const { sdkClient } = useCoreSdkProvider()
-  const search = useSearch()
+
+  const queryString = useSearch()
   const [, setLocation] = useLocation()
-  const [sdkQuery, setSdkQuery] = useState<QueryParamsList>()
 
-  const showFilters = type === 'all'
-  const showSearchBar = type === 'all'
-  const isUserFiltered = getActiveFilterCountFromUrl({ includeText: true }) > 0
-
-  useEffect(() => {
-    const filters = showFilters
-      ? filtersAdapters.fromUrlQueryToSdk(search)
-      : showSearchBar
-      ? filtersAdapters.fromFormValuesToSdk({
-          ...filtersByListType.all,
-          text: filtersAdapters.fromUrlQueryToFormValues(search).text
-        })
-      : filtersAdapters.fromFormValuesToSdk(filtersByListType[type])
-
-    setSdkQuery(buildListQuery(filters))
-  }, [search])
-
-  const updateTextFilter = (hint?: string): void => {
-    const currentFilters = filtersAdapters.fromUrlQueryToFormValues(search)
-    const newQueryString = filtersAdapters.fromFormValuesToUrlQuery({
-      ...currentFilters,
-      text: isEmpty(hint?.trim()) ? undefined : hint
+  const { SearchWithNav, FilteredList, viewTitle, hasActiveFilter } =
+    useFilters({
+      instructions
     })
-    navigate(`?${newQueryString}`, {
-      replace: true
-    })
-  }
 
-  if (sdkQuery == null) {
-    return <div />
-  }
+  const isUserCustomFiltered =
+    hasActiveFilter && viewTitle === presets.all.viewTitle
+  const hideFiltersNav = !(
+    viewTitle == null || viewTitle === presets.all.viewTitle
+  )
 
   const onGoBack =
     type === 'all'
@@ -86,66 +55,55 @@ export function CustomerList({ type }: Props): JSX.Element {
       title={pageTitle[type]}
       mode={mode}
       onGoBack={onGoBack}
-      gap={showFilters ? 'only-top' : undefined}
+      gap='only-top'
     >
-      {showFilters || showSearchBar ? (
-        <Spacer top='4' bottom='14'>
-          {showSearchBar && (
-            <Spacer bottom='2'>
-              <SearchBar
-                placeholder='Search...'
-                initialValue={
-                  filtersAdapters.fromUrlQueryToFormValues(search).text
-                }
-                onClear={updateTextFilter}
-                onSearch={updateTextFilter}
-              />
-            </Spacer>
-          )}
-          {showFilters && <FiltersNav />}
-        </Spacer>
-      ) : null}
+      <SearchWithNav
+        queryString={queryString}
+        onUpdate={(qs) => {
+          navigate(`?${qs}`, {
+            replace: true
+          })
+        }}
+        onFilterClick={(queryString) => {
+          setLocation(appRoutes.filters.makePath(queryString))
+        }}
+        hideFiltersNav={hideFiltersNav}
+      />
 
       <Spacer bottom='14'>
-        <ResourceList
-          sdkClient={sdkClient}
-          title={isUserFiltered ? 'Results' : 'All customers'}
-          actionButton={
-            canUser('create', 'customers') && (
-              <Link href={appRoutes.new.makePath()}>
-                <A>Add new</A>
-              </Link>
-            )
-          }
+        <FilteredList
           type='customers'
-          query={sdkQuery}
-          emptyState={
-            <ListEmptyState scope={isUserFiltered ? 'filters' : 'list'} />
-          }
           Item={ListItemCustomer}
+          query={{
+            fields: {
+              customers: [
+                'id',
+                'email',
+                'total_orders_count',
+                'created_at',
+                'updated_at',
+                'customer_group'
+              ]
+            },
+            include: ['customer_group'],
+            pageSize: 25,
+            sort: {
+              updated_at: 'desc'
+            }
+          }}
+          emptyState={
+            <ListEmptyState
+              scope={
+                isUserCustomFiltered
+                  ? 'userFiltered'
+                  : viewTitle !== presets.all.viewTitle
+                  ? 'presetView'
+                  : 'history'
+              }
+            />
+          }
         />
       </Spacer>
     </PageLayout>
   )
-}
-
-function buildListQuery(filters: QueryFilter): QueryParamsList {
-  return {
-    fields: {
-      customers: [
-        'id',
-        'email',
-        'total_orders_count',
-        'created_at',
-        'updated_at',
-        'customer_group'
-      ]
-    },
-    include: ['customer_group'],
-    pageSize: 25,
-    filters,
-    sort: {
-      created_at: 'desc'
-    }
-  }
 }

@@ -7,11 +7,13 @@ import {
   Text,
   formatDate,
   formatDisplayName,
+  navigateToDetail,
   useTokenProvider,
   withSkeletonTemplate
 } from '@commercelayer/app-elements'
 import type { Order } from '@commercelayer/sdk'
 import isEmpty from 'lodash/isEmpty'
+import { useLocation } from 'wouter'
 
 interface Props {
   resource?: Order
@@ -49,13 +51,24 @@ function orderStatusText(order: Order): JSX.Element {
 function ListItemOrderComponent({
   resource = makeOrder()
 }: Props): JSX.Element {
-  const { user } = useTokenProvider()
+  const { user, canAccess } = useTokenProvider()
+  const [, setLocation] = useLocation()
 
   const displayStatus = getDisplayStatus(resource)
 
+  const navigateToOrder = canAccess('orders')
+    ? navigateToDetail({
+        setLocation,
+        destination: {
+          app: 'orders',
+          resourceId: resource.id
+        }
+      })
+    : {}
+
   return (
     <ListItem
-      tag='div'
+      tag={canAccess('orders') ? 'a' : 'div'}
       icon={
         <Icon
           name={displayStatus.icon}
@@ -63,6 +76,7 @@ function ListItemOrderComponent({
           gap='large'
         />
       }
+      {...navigateToOrder}
     >
       <div>
         <Text tag='div' weight='semibold'>
@@ -78,14 +92,18 @@ function ListItemOrderComponent({
           {orderStatusText(resource)}
         </Text>
       </div>
-      <div>
-        <Text tag='div' weight='semibold'>
-          {resource.formatted_total_amount}
-        </Text>
-        <Text tag='div' weight='medium' size='small' variant='info'>
-          {getPaymentStatusName(resource.payment_status)}
-        </Text>
-      </div>
+      {canAccess('orders') ? (
+        <Icon name='caretRight' />
+      ) : (
+        <div>
+          <Text tag='div' weight='semibold'>
+            {resource.formatted_total_amount}
+          </Text>
+          <Text tag='div' weight='medium' size='small' variant='info'>
+            {getPaymentStatusName(resource.payment_status)}
+          </Text>
+        </div>
+      )}
     </ListItem>
   )
 }
