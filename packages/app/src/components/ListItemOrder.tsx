@@ -13,7 +13,6 @@ import {
 } from '@commercelayer/app-elements'
 import type { Order } from '@commercelayer/sdk'
 import isEmpty from 'lodash/isEmpty'
-import { useLocation } from 'wouter'
 
 interface Props {
   resource?: Order
@@ -51,17 +50,20 @@ function orderStatusText(order: Order): JSX.Element {
 function ListItemOrderComponent({
   resource = makeOrder()
 }: Props): JSX.Element {
-  const { user, canAccess } = useTokenProvider()
-  const [, setLocation] = useLocation()
+  const {
+    user,
+    canAccess,
+    settings: { mode }
+  } = useTokenProvider()
 
   const displayStatus = getDisplayStatus(resource)
 
   const navigateToOrder = canAccess('orders')
     ? navigateToDetail({
-        setLocation,
         destination: {
           app: 'orders',
-          resourceId: resource.id
+          resourceId: resource.id,
+          mode
         }
       })
     : {}
