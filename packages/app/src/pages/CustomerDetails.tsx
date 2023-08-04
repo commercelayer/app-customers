@@ -84,7 +84,10 @@ export function CustomerDetails(): JSX.Element {
             <ResourceTags
               resourceType='customers'
               resourceId={customer.id}
-              overlay={{ title: pageTitle }}
+              overlay={{ title: 'Edit tags', description: pageTitle }}
+              onTagClick={(tagId) => {
+                setLocation(appRoutes.list.makePath(`tags_id_in=${tagId}`))
+              }}
             />
           )}
           <Spacer top='14'>
