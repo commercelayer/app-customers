@@ -2,24 +2,6 @@ import type { FiltersInstructions } from '@commercelayer/app-elements-hook-form/
 
 export const instructions: FiltersInstructions = [
   {
-    label: 'Groups',
-    type: 'options',
-    sdk: {
-      predicate: 'customer_group_id_in'
-    },
-    render: {
-      component: 'relationshipSelector',
-      props: {
-        fieldForLabel: 'name',
-        fieldForValue: 'id',
-        resource: 'customer_groups',
-        searchBy: 'name_cont',
-        sortBy: { attribute: 'name', direction: 'asc' },
-        previewLimit: 5
-      }
-    }
-  },
-  {
     label: 'Status',
     type: 'options',
     sdk: {
@@ -35,6 +17,24 @@ export const instructions: FiltersInstructions = [
           { value: 'acquired', label: 'Acquired' },
           { value: 'repeat', label: 'Repeat' }
         ]
+      }
+    }
+  },
+  {
+    label: 'Groups',
+    type: 'options',
+    sdk: {
+      predicate: 'customer_group_id_in'
+    },
+    render: {
+      component: 'relationshipSelector',
+      props: {
+        fieldForLabel: 'name',
+        fieldForValue: 'id',
+        resource: 'customer_groups',
+        searchBy: 'name_cont',
+        sortBy: { attribute: 'name', direction: 'asc' },
+        previewLimit: 5
       }
     }
   },
