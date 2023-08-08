@@ -20,24 +20,6 @@ export const instructions: FiltersInstructions = [
     }
   },
   {
-    label: 'Tags',
-    type: 'options',
-    sdk: {
-      predicate: 'tags_id_in'
-    },
-    render: {
-      component: 'relationshipSelector',
-      props: {
-        fieldForLabel: 'name',
-        fieldForValue: 'id',
-        resource: 'tags',
-        searchBy: 'name_cont',
-        sortBy: { attribute: 'name', direction: 'asc' },
-        previewLimit: 5
-      }
-    }
-  },
-  {
     label: 'Status',
     type: 'options',
     sdk: {
@@ -53,6 +35,24 @@ export const instructions: FiltersInstructions = [
           { value: 'acquired', label: 'Acquired' },
           { value: 'repeat', label: 'Repeat' }
         ]
+      }
+    }
+  },
+  {
+    label: 'Tags',
+    type: 'options',
+    sdk: {
+      predicate: 'tags_id_in'
+    },
+    render: {
+      component: 'relationshipSelector',
+      props: {
+        fieldForLabel: 'name',
+        fieldForValue: 'id',
+        resource: 'tags',
+        searchBy: 'name_cont',
+        sortBy: { attribute: 'name', direction: 'asc' },
+        previewLimit: 5
       }
     }
   },
