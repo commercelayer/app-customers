@@ -21,6 +21,27 @@ export const instructions: FiltersInstructions = [
     }
   },
   {
+    label: 'Type',
+    type: 'options',
+    sdk: {
+      predicate: 'password_present',
+      parseFormValue: (value) =>
+        Array.isArray(value) && value.length === 1
+          ? value[0] === 'registered'
+          : undefined
+    },
+    render: {
+      component: 'toggleButtons',
+      props: {
+        mode: 'multi',
+        options: [
+          { value: 'guest', label: 'Guest' },
+          { value: 'registered', label: 'Registered' }
+        ]
+      }
+    }
+  },
+  {
     label: 'Groups',
     type: 'options',
     sdk: {
