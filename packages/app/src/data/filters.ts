@@ -73,7 +73,8 @@ export const instructions: FiltersInstructions = [
         resource: 'tags',
         searchBy: 'name_cont',
         sortBy: { attribute: 'name', direction: 'asc' },
-        previewLimit: 5
+        previewLimit: 5,
+        showCheckboxIcon: false
       }
     }
   },
