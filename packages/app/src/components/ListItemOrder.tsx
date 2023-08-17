@@ -78,6 +78,7 @@ function ListItemOrderComponent({
           gap='large'
         />
       }
+      alignItems={canAccess('orders') ? 'center' : 'top'}
       {...navigateToOrder}
     >
       <div>
