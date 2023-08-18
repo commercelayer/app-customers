@@ -78,6 +78,7 @@ function ListItemOrderComponent({
           gap='large'
         />
       }
+      alignItems={canAccess('orders') ? 'center' : 'top'}
       {...navigateToOrder}
     >
       <div>
@@ -98,10 +99,16 @@ function ListItemOrderComponent({
         <Icon name='caretRight' />
       ) : (
         <div>
-          <Text tag='div' weight='semibold'>
+          <Text tag='div' weight='semibold' wrap='nowrap'>
             {resource.formatted_total_amount}
           </Text>
-          <Text tag='div' weight='medium' size='small' variant='info'>
+          <Text
+            tag='div'
+            weight='medium'
+            size='small'
+            variant='info'
+            wrap='nowrap'
+          >
             {getPaymentStatusName(resource.payment_status)}
           </Text>
         </div>

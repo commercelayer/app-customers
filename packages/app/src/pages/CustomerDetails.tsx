@@ -3,6 +3,7 @@ import {
   Button,
   EmptyState,
   PageLayout,
+  ResourceTags,
   SkeletonTemplate,
   Spacer,
   goBack,
@@ -20,6 +21,7 @@ import { CustomerWallet } from '#components/CustomerWallet'
 import { ScrollToTop } from '#components/ScrollToTop'
 import { appRoutes } from '#data/routes'
 import { useCustomerDetails } from '#hooks/useCustomerDetails'
+import { isMockedId } from '#mocks'
 
 export function CustomerDetails(): JSX.Element {
   const {
@@ -73,11 +75,24 @@ export function CustomerDetails(): JSX.Element {
           defaultRelativePath: appRoutes.list.makePath()
         })
       }}
+      gap='only-top'
     >
       <ScrollToTop />
       <SkeletonTemplate isLoading={isLoading}>
-        <Spacer bottom='4'>
-          <CustomerStatus customer={customer} />
+        <Spacer bottom='4' top='4'>
+          {!isMockedId(customer.id) && (
+            <ResourceTags
+              resourceType='customers'
+              resourceId={customer.id}
+              overlay={{ title: 'Edit tags', description: pageTitle }}
+              onTagClick={(tagId) => {
+                setLocation(appRoutes.list.makePath(`tags_id_in=${tagId}`))
+              }}
+            />
+          )}
+          <Spacer top='14'>
+            <CustomerStatus customer={customer} />
+          </Spacer>
           <Spacer top='14'>
             <CustomerInfo customer={customer} />
           </Spacer>

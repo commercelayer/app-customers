@@ -26,31 +26,37 @@ function renderAddress({
   showBillingInfo?: boolean
 }): JSX.Element | null {
   const address = customerAddress?.address
-  return (
-    <ListItem tag='div' alignItems='top'>
-      <div>
-        <Text tag='div' weight='bold'>
-          {label}
-        </Text>
-        <Text tag='div' variant='info'>
-          {address?.line_1} {address?.line_2}
-          <br />
-          {address?.city} {address?.state_code} {address?.zip_code} (
-          {address?.country_code})
-        </Text>
-        {address?.billing_info != null && showBillingInfo === true ? (
-          <Text tag='div' variant='info'>
-            {address?.billing_info}
+  if (address != null) {
+    return (
+      <ListItem tag='div' alignItems='top'>
+        <div>
+          <Text tag='div' weight='bold'>
+            {label}
           </Text>
+          <Text tag='div' variant='info'>
+            {address.line_1} {address.line_2}
+            <br />
+            {address.city} {address.state_code} {address.zip_code} (
+            {address.country_code})
+          </Text>
+          <Text tag='div' variant='info'>
+            {address.phone}
+          </Text>
+          {address.billing_info != null && showBillingInfo === true ? (
+            <Text tag='div' variant='info'>
+              {address.billing_info}
+            </Text>
+          ) : null}
+        </div>
+        {editUrl != null ? (
+          <Link href={editUrl}>
+            <A>Edit</A>
+          </Link>
         ) : null}
-      </div>
-      {editUrl != null ? (
-        <Link href={editUrl}>
-          <A>Edit</A>
-        </Link>
-      ) : null}
-    </ListItem>
-  )
+      </ListItem>
+    )
+  }
+  return <></>
 }
 
 export const CustomerAddresses = withSkeletonTemplate<Props>(

@@ -28,7 +28,9 @@ export const CustomerInfo = withSkeletonTemplate<Props>(
             Group
           </Text>
           <Text tag='div' weight='semibold' className='capitalize'>
-            {customer?.customer_group?.name ?? '-'}
+            {customer?.customer_group?.name ?? (
+              <Text className='text-gray-300'>&#8212;</Text>
+            )}
           </Text>
         </ListItem>
       </>
