@@ -38,6 +38,11 @@ function renderAddress({
           {address?.city} {address?.state_code} {address?.zip_code} (
           {address?.country_code})
         </Text>
+        {address?.phone != null ? (
+          <Text tag='div' variant='info'>
+            {address?.phone}
+          </Text>
+        ) : null}
         {address?.billing_info != null && showBillingInfo === true ? (
           <Text tag='div' variant='info'>
             {address?.billing_info}
