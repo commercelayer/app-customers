@@ -1,5 +1,4 @@
 import {
-  A,
   Button,
   EmptyState,
   PageLayout,
@@ -63,7 +62,7 @@ export function CustomerDetails(): JSX.Element {
       mode={mode}
       actionButton={
         <Link href={appRoutes.edit.makePath(customerId)}>
-          <A>Edit</A>
+          <Button variant='link'>Edit</Button>
         </Link>
       }
       title={

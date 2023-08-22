@@ -1,6 +1,6 @@
 import { appRoutes } from '#data/routes'
 import {
-  A,
+  Button,
   Legend,
   ListItemsMetadata,
   withSkeletonTemplate
@@ -27,7 +27,7 @@ export const CustomerMetaData = withSkeletonTemplate<Props>(
           actionButton={
             <div className='pr-4'>
               <Link href={appRoutes.editMetaData.makePath(customer.id)}>
-                <A>Edit</A>
+                <Button variant='link'>Edit</Button>
               </Link>
             </div>
           }
