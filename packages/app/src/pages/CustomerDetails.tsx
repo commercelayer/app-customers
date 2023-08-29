@@ -78,16 +78,18 @@ export function CustomerDetails(): JSX.Element {
     >
       <ScrollToTop />
       <SkeletonTemplate isLoading={isLoading}>
-        <Spacer bottom='4' top='4'>
+        <Spacer bottom='4'>
           {!isMockedId(customer.id) && (
-            <ResourceTags
-              resourceType='customers'
-              resourceId={customer.id}
-              overlay={{ title: 'Edit tags', description: pageTitle }}
-              onTagClick={(tagId) => {
-                setLocation(appRoutes.list.makePath(`tags_id_in=${tagId}`))
-              }}
-            />
+            <Spacer top='6'>
+              <ResourceTags
+                resourceType='customers'
+                resourceId={customer.id}
+                overlay={{ title: 'Edit tags', description: pageTitle }}
+                onTagClick={(tagId) => {
+                  setLocation(appRoutes.list.makePath(`tags_id_in=${tagId}`))
+                }}
+              />
+            </Spacer>
           )}
           <Spacer top='14'>
             <CustomerStatus customer={customer} />
