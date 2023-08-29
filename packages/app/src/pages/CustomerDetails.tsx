@@ -62,7 +62,7 @@ export function CustomerDetails(): JSX.Element {
       mode={mode}
       actionButton={
         <Link href={appRoutes.edit.makePath(customerId)}>
-          <Button variant='link'>Edit</Button>
+          <a>Edit</a>
         </Link>
       }
       title={

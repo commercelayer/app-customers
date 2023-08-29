@@ -1,6 +1,5 @@
 import { appRoutes } from '#data/routes'
 import {
-  Button,
   Legend,
   ListItem,
   Text,
@@ -50,7 +49,7 @@ function renderAddress({
         </div>
         {editUrl != null ? (
           <Link href={editUrl}>
-            <Button variant='link'>Edit</Button>
+            <a>Edit</a>
           </Link>
         ) : null}
       </ListItem>

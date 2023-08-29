@@ -4,7 +4,6 @@ import { instructions } from '#data/filters'
 import { presets, type ListType } from '#data/lists'
 import { appRoutes } from '#data/routes'
 import {
-  Button,
   PageLayout,
   Spacer,
   useTokenProvider
@@ -107,7 +106,7 @@ export function CustomerList({ type }: Props): JSX.Element {
           actionButton={
             canUser('create', 'customers') ? (
               <Link href={appRoutes.new.makePath()}>
-                <Button variant='link'>Add new</Button>
+                <a>Add new</a>
               </Link>
             ) : undefined
           }

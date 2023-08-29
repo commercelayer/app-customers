@@ -1,6 +1,5 @@
 import { appRoutes } from '#data/routes'
 import {
-  Button,
   Legend,
   Spacer,
   withSkeletonTemplate
@@ -33,7 +32,7 @@ export const CustomerLastOrders = withSkeletonTemplate((): JSX.Element => {
       {showAll && (
         <Spacer top='4' bottom='4'>
           <Link href={appRoutes.orders.makePath(customerId)}>
-            <Button variant='link'>View all orders</Button>
+            <a>View all orders</a>
           </Link>
         </Spacer>
       )}
