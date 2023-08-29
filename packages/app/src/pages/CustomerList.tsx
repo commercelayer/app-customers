@@ -9,7 +9,7 @@ import {
   useTokenProvider
 } from '@commercelayer/app-elements'
 import { useFilters } from '@commercelayer/app-elements-hook-form'
-import { useLocation } from 'wouter'
+import { Link, useLocation } from 'wouter'
 import { navigate, useSearch } from 'wouter/use-location'
 
 interface Props {
@@ -23,7 +23,8 @@ const pageTitle: Record<ListType, string> = {
 export function CustomerList({ type }: Props): JSX.Element {
   const {
     dashboardUrl,
-    settings: { mode }
+    settings: { mode },
+    canUser
   } = useTokenProvider()
 
   const queryString = useSearch()
@@ -101,6 +102,13 @@ export function CustomerList({ type }: Props): JSX.Element {
                   : 'history'
               }
             />
+          }
+          actionButton={
+            canUser('create', 'customers') ? (
+              <Link href={appRoutes.new.makePath()}>
+                <a>Add new</a>
+              </Link>
+            ) : undefined
           }
         />
       </Spacer>
