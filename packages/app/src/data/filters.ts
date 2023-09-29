@@ -1,4 +1,4 @@
-import type { FiltersInstructions } from '@commercelayer/app-elements-hook-form/dist/filters/methods/types'
+import type { FiltersInstructions } from '@commercelayer/app-elements/dist/ui/resources/useResourceFilters/types'
 
 export const instructions: FiltersInstructions = [
   {
@@ -9,7 +9,7 @@ export const instructions: FiltersInstructions = [
       defaultOptions: ['prospect', 'acquired', 'repeat']
     },
     render: {
-      component: 'toggleButtons',
+      component: 'inputToggleButton',
       props: {
         mode: 'multi',
         options: [
@@ -31,7 +31,7 @@ export const instructions: FiltersInstructions = [
           : undefined
     },
     render: {
-      component: 'toggleButtons',
+      component: 'inputToggleButton',
       props: {
         mode: 'multi',
         options: [
@@ -48,7 +48,7 @@ export const instructions: FiltersInstructions = [
       predicate: 'customer_group_id_in'
     },
     render: {
-      component: 'relationshipSelector',
+      component: 'inputResourceGroup',
       props: {
         fieldForLabel: 'name',
         fieldForValue: 'id',
@@ -66,7 +66,7 @@ export const instructions: FiltersInstructions = [
       predicate: 'tags_id_in'
     },
     render: {
-      component: 'relationshipSelector',
+      component: 'inputResourceGroup',
       props: {
         fieldForLabel: 'name',
         fieldForValue: 'id',

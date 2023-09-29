@@ -4,7 +4,6 @@ import {
   PageLayout,
   ResourceList,
   Spacer,
-  useCoreSdkProvider,
   useTokenProvider
 } from '@commercelayer/app-elements'
 import { Link, useLocation, useRoute } from 'wouter'
@@ -17,7 +16,6 @@ import { useCustomerDetails } from '#hooks/useCustomerDetails'
 
 export function CustomerOrders(): JSX.Element {
   const { canUser } = useTokenProvider()
-  const { sdkClient } = useCoreSdkProvider()
   const [, setLocation] = useLocation()
   const [, params] = useRoute<{ customerId: string }>(appRoutes.orders.path)
   const customerId = params?.customerId ?? ''
@@ -60,7 +58,6 @@ export function CustomerOrders(): JSX.Element {
       <ScrollToTop />
       <Spacer bottom='14'>
         <ResourceList
-          sdkClient={sdkClient}
           type='orders'
           title='All orders'
           query={{
@@ -72,7 +69,7 @@ export function CustomerOrders(): JSX.Element {
             sort: ['-updated_at']
           }}
           emptyState={<ListEmptyState scope='presetView' />}
-          Item={ListItemOrder}
+          ItemTemplate={ListItemOrder}
         />
       </Spacer>
     </PageLayout>

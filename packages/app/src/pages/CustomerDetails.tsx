@@ -2,6 +2,7 @@ import {
   Button,
   EmptyState,
   PageLayout,
+  ResourceMetadata,
   ResourceTags,
   SkeletonTemplate,
   Spacer,
@@ -13,7 +14,6 @@ import { Link, useLocation, useRoute } from 'wouter'
 import { CustomerAddresses } from '#components/CustomerAddresses'
 import { CustomerInfo } from '#components/CustomerInfo'
 import { CustomerLastOrders } from '#components/CustomerLastOrders'
-import { CustomerMetaData } from '#components/CustomerMetaData'
 import { CustomerStatus } from '#components/CustomerStatus'
 import { CustomerTimeline } from '#components/CustomerTimeline'
 import { CustomerWallet } from '#components/CustomerWallet'
@@ -106,9 +106,17 @@ export function CustomerDetails(): JSX.Element {
           <Spacer top='14'>
             <CustomerAddresses customer={customer} />
           </Spacer>
-          <Spacer top='14'>
-            <CustomerMetaData customer={customer} />
-          </Spacer>
+          {!isMockedId(customer.id) && (
+            <Spacer top='14'>
+              <ResourceMetadata
+                resourceType='customers'
+                resourceId={customer.id}
+                overlay={{
+                  title: customer.email
+                }}
+              />
+            </Spacer>
+          )}
           <Spacer top='14'>
             <CustomerTimeline customer={customer} />
           </Spacer>
