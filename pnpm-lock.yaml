@@ -20,8 +20,8 @@ importers:
   packages/app:
     dependencies:
       '@commercelayer/app-elements':
-        specifier: ^0.3.1
-        version: 0.3.1(@commercelayer/sdk@5.13.2)(query-string@8.1.0)(react-dom@18.2.0)(react-hook-form@7.46.1)(react@18.2.0)(wouter@2.11.0)
+        specifier: ^0.3.2
+        version: 0.3.2(@commercelayer/sdk@5.13.2)(query-string@8.1.0)(react-dom@18.2.0)(react-hook-form@7.46.1)(react@18.2.0)(wouter@2.11.0)
       '@commercelayer/sdk':
         specifier: 5.13.2
         version: 5.13.2
@@ -356,8 +356,8 @@ packages:
     dev: true
     optional: true
 
-  /@commercelayer/app-elements@0.3.1(@commercelayer/sdk@5.13.2)(query-string@8.1.0)(react-dom@18.2.0)(react-hook-form@7.46.1)(react@18.2.0)(wouter@2.11.0):
-    resolution: {integrity: sha512-F/8jP5kCMpZ8tQ5tk5Ot2GkXadB2S7ZRzeG/sNkRhohLiKVHaxVeWMz2V4ft8Dm1j5yvSSwv07f2BGRNAWTeTw==}
+  /@commercelayer/app-elements@0.3.2(@commercelayer/sdk@5.13.2)(query-string@8.1.0)(react-dom@18.2.0)(react-hook-form@7.46.1)(react@18.2.0)(wouter@2.11.0):
+    resolution: {integrity: sha512-ElyUIiMQKR0dYZI9/i9PmM1GxtIa5PFqhs5RFu20tDb3ImqnYREbFDZEZ85VJ6fLt4wX+yYggWHTKjOlgaLIBQ==}
     engines: {node: '>=18', pnpm: '>=7'}
     peerDependencies:
       '@commercelayer/sdk': ^5.x
@@ -7486,7 +7486,7 @@ packages:
     resolution: {integrity: sha512-uivwYcQaxAucv1CzRp2n/QdYPo4ILf9VXgH19zEIjFx2EJufV16P0JtJVpYHy89DItG6Kwj2oIUjrcK5au+4tQ==}
     engines: {node: '>=8'}
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.6.2
     dev: false
 
   /tsconfck@2.1.1(typescript@5.2.2):
@@ -7522,10 +7522,10 @@ packages:
 
   /tslib@2.5.0:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
+    dev: true
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
-    dev: true
 
   /tuf-js@1.1.7:
     resolution: {integrity: sha512-i3P9Kgw3ytjELUfpuKVDNBJvk4u5bXL6gskv572mcevPbSKCV3zt3djhmlEQ65yERjIbOSncy7U4cQJaB1CBCg==}
