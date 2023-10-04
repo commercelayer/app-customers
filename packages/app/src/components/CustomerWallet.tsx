@@ -6,7 +6,7 @@ import {
   Section,
   withSkeletonTemplate
 } from '@commercelayer/app-elements'
-import type { AvatarProps } from '@commercelayer/app-elements/dist/ui/atoms/Avatar'
+import type { AvatarProps } from '@commercelayer/app-elements/dist/src/ui/atoms/Avatar'
 import type { Customer } from '@commercelayer/sdk'
 
 interface Props {

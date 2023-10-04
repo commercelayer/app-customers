@@ -1,4 +1,4 @@
-import type { IconProps } from '@commercelayer/app-elements/dist/ui/atoms/Icon'
+import type { IconProps } from '@commercelayer/app-elements/dist/src/ui/atoms/Icon'
 import type { Order } from '@commercelayer/sdk'
 
 export type UITriggerAttributes =
