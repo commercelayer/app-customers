@@ -1,6 +1,6 @@
 import {
-  Legend,
   ListItem,
+  Section,
   Text,
   withSkeletonTemplate
 } from '@commercelayer/app-elements'
@@ -13,8 +13,7 @@ interface Props {
 export const CustomerInfo = withSkeletonTemplate<Props>(
   ({ customer }): JSX.Element => {
     return (
-      <>
-        <Legend title='Info' />
+      <Section title='Info'>
         <ListItem tag='div'>
           <Text tag='div' variant='info'>
             Status
@@ -33,7 +32,7 @@ export const CustomerInfo = withSkeletonTemplate<Props>(
             )}
           </Text>
         </ListItem>
-      </>
+      </Section>
     )
   }
 )

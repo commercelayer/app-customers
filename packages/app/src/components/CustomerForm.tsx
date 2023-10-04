@@ -1,15 +1,13 @@
 import {
   Button,
+  HookedForm,
+  HookedInput,
+  HookedInputSelect,
+  HookedValidationApiError,
   Spacer,
   Text,
   useCoreSdkProvider
 } from '@commercelayer/app-elements'
-import {
-  Form,
-  Input,
-  InputSelect,
-  ValidationApiError
-} from '@commercelayer/app-elements-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, type UseFormSetError } from 'react-hook-form'
 import { z } from 'zod'
@@ -55,14 +53,14 @@ export function CustomerForm({
   const isLoadingCustomerGroups = customerGroups === undefined
 
   return (
-    <Form
+    <HookedForm
       {...methods}
       onSubmit={(formValues) => {
         onSubmit(formValues, methods.setError)
       }}
     >
       <Spacer bottom='8'>
-        <Input
+        <HookedInput
           name='email'
           label='Email'
           hint={{
@@ -86,9 +84,9 @@ export function CustomerForm({
         >
           {defaultValues.email.length === 0 ? 'Create' : 'Update'} customer
         </Button>
-        <ValidationApiError apiError={apiError} />
+        <HookedValidationApiError apiError={apiError} />
       </Spacer>
-    </Form>
+    </HookedForm>
   )
 }
 
@@ -96,7 +94,7 @@ function Select({ options }: { options: CustomerGroup[] }): JSX.Element | null {
   const { sdkClient } = useCoreSdkProvider()
 
   return (
-    <InputSelect
+    <HookedInputSelect
       label='Group'
       name='customerGroup'
       initialValues={options.map(({ id, name }) => ({

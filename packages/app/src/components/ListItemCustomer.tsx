@@ -1,14 +1,10 @@
 import { makeCustomer } from '#mocks'
 import {
-  AvatarLetter,
-  Icon,
-  ListItem,
-  Text,
-  navigateToDetail,
+  ResourceListItem,
+  navigateTo,
   withSkeletonTemplate
 } from '@commercelayer/app-elements'
 import type { Customer } from '@commercelayer/sdk'
-import isEmpty from 'lodash/isEmpty'
 import { useLocation } from 'wouter'
 
 interface Props {
@@ -21,30 +17,16 @@ function ListItemCustomerComponent({
   const [, setLocation] = useLocation()
 
   return (
-    <ListItem
-      tag='a'
-      icon={<AvatarLetter text={resource.email} />}
-      {...navigateToDetail({
+    <ResourceListItem
+      resource={resource}
+      {...navigateTo({
         setLocation,
         destination: {
           app: 'customers',
           resourceId: resource.id
         }
       })}
-    >
-      <div>
-        <Text tag='div' weight='semibold'>
-          {resource.email}
-        </Text>
-        <Text tag='div' weight='medium' size='small' variant='info'>
-          {resource.total_orders_count ?? 0} orders
-          {!isEmpty(resource.customer_group)
-            ? ` · ${resource.customer_group?.name}`
-            : ''}
-        </Text>
-      </div>
-      <Icon name='caretRight' />
-    </ListItem>
+    />
   )
 }
 

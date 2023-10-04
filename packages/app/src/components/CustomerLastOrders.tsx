@@ -1,6 +1,6 @@
 import { appRoutes } from '#data/routes'
 import {
-  Legend,
+  Section,
   Spacer,
   withSkeletonTemplate
 } from '@commercelayer/app-elements'
@@ -26,8 +26,7 @@ export const CustomerLastOrders = withSkeletonTemplate((): JSX.Element => {
   })
 
   return (
-    <>
-      <Legend title={`Orders · ${orders?.meta?.recordCount}`} />
+    <Section title={`Orders · ${orders?.meta?.recordCount}`}>
       {ordersListItems}
       {showAll && (
         <Spacer top='4' bottom='4'>
@@ -36,6 +35,6 @@ export const CustomerLastOrders = withSkeletonTemplate((): JSX.Element => {
           </Link>
         </Spacer>
       )}
-    </>
+    </Section>
   )
 })

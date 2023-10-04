@@ -2,11 +2,11 @@ import { PaymentMethod } from '#components/PaymentMethod'
 import {
   Avatar,
   Icon,
-  Legend,
   ListItem,
+  Section,
   withSkeletonTemplate
 } from '@commercelayer/app-elements'
-import type { AvatarProps } from '@commercelayer/app-elements/dist/ui/atoms/Avatar'
+import type { AvatarProps } from '@commercelayer/app-elements/dist/src/ui/atoms/Avatar'
 import type { Customer } from '@commercelayer/sdk'
 
 interface Props {
@@ -66,10 +66,5 @@ export const CustomerWallet = withSkeletonTemplate<Props>(({ customer }) => {
 
   if (customerPaymentSources?.length === 0) return <></>
 
-  return (
-    <>
-      <Legend title='Wallet' />
-      {customerPaymentSources}
-    </>
-  )
+  return <Section title='Wallet'>{customerPaymentSources}</Section>
 })

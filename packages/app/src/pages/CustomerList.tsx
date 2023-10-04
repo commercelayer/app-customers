@@ -6,9 +6,9 @@ import { appRoutes } from '#data/routes'
 import {
   PageLayout,
   Spacer,
+  useResourceFilters,
   useTokenProvider
 } from '@commercelayer/app-elements'
-import { useFilters } from '@commercelayer/app-elements-hook-form'
 import { Link, useLocation } from 'wouter'
 import { navigate, useSearch } from 'wouter/use-location'
 
@@ -31,7 +31,7 @@ export function CustomerList({ type }: Props): JSX.Element {
   const [, setLocation] = useLocation()
 
   const { SearchWithNav, FilteredList, viewTitle, hasActiveFilter } =
-    useFilters({
+    useResourceFilters({
       instructions
     })
 
@@ -74,7 +74,7 @@ export function CustomerList({ type }: Props): JSX.Element {
       <Spacer bottom='14'>
         <FilteredList
           type='customers'
-          Item={ListItemCustomer}
+          ItemTemplate={ListItemCustomer}
           query={{
             fields: {
               customers: [

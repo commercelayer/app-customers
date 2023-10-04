@@ -1,5 +1,5 @@
 import {
-  Legend,
+  Section,
   Spacer,
   Text,
   Timeline,
@@ -133,8 +133,7 @@ export const CustomerTimeline = withSkeletonTemplate<Props>(({ customer }) => {
   const { mutateCustomer } = useCustomerDetails(customer.id)
 
   return (
-    <>
-      <Legend title='Timeline' />
+    <Section title='Timeline'>
       <Spacer top='8'>
         <Timeline
           events={events}
@@ -163,6 +162,6 @@ export const CustomerTimeline = withSkeletonTemplate<Props>(({ customer }) => {
           }}
         />
       </Spacer>
-    </>
+    </Section>
   )
 })
