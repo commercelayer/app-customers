@@ -63,7 +63,7 @@ export function CustomerOrders(): JSX.Element {
           query={{
             filters: {
               customer_id_eq: customerId,
-              status_matches_any: 'placed,approved,cancelled'
+              status_matches_any: 'placed,approved,editing,cancelled'
             },
             include: ['billing_address'],
             sort: ['-updated_at']
