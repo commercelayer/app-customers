@@ -35,7 +35,9 @@ export function useCustomerOrdersList({ id, settings }: Props): {
       : [
           id,
           {
-            filters: { status_matches_any: 'placed,approved,cancelled' },
+            filters: {
+              status_matches_any: 'placed,approved,editing,cancelled'
+            },
             include: ['billing_address', 'market'],
             sort: ['-created_at'],
             pageNumber,
