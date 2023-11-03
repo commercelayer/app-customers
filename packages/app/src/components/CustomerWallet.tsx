@@ -4,9 +4,9 @@ import {
   Icon,
   ListItem,
   Section,
-  withSkeletonTemplate
+  withSkeletonTemplate,
+  type AvatarProps
 } from '@commercelayer/app-elements'
-import type { AvatarProps } from '@commercelayer/app-elements/dist/src/ui/atoms/Avatar'
 import type { Customer } from '@commercelayer/sdk'
 
 interface Props {
