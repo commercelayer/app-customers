@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "app",
-  "version": "1.1.1",
+  "version": "1.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -15,30 +15,30 @@
     "prepare": "touch ./public/config.local.js"
   },
   "dependencies": {
-    "@commercelayer/app-elements": "^1.0.1",
-    "@commercelayer/sdk": "5.13.2",
-    "@hookform/resolvers": "^3.3.1",
+    "@commercelayer/app-elements": "^1.5.1",
+    "@commercelayer/sdk": "5.19.2",
+    "@hookform/resolvers": "^3.3.2",
     "lodash": "^4.17.21",
     "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.46.1",
-    "swr": "^2.2.2",
-    "type-fest": "^4.3.1",
-    "wouter": "^2.11.0",
-    "zod": "^3.22.2"
+    "react-hook-form": "^7.47.0",
+    "swr": "^2.2.4",
+    "type-fest": "^4.6.0",
+    "wouter": "^2.12.1",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@commercelayer/eslint-config-ts-react": "^1.1.0",
-    "@types/lodash": "^4.14.191",
-    "@types/react": "^18.2.24",
-    "@types/react-dom": "^18.2.8",
-    "@vitejs/plugin-react": "^4.0.4",
-    "eslint": "^8.49.0",
+    "@commercelayer/eslint-config-ts-react": "^1.2.0",
+    "@types/lodash": "^4.14.200",
+    "@types/react": "^18.2.34",
+    "@types/react-dom": "^18.2.14",
+    "@vitejs/plugin-react": "^4.1.1",
+    "eslint": "^8.52.0",
     "jsdom": "^22.1.0",
     "typescript": "^5.2.2",
-    "vite": "^4.4.9",
+    "vite": "^4.5.0",
     "vite-tsconfig-paths": "^4.2.1",
-    "vitest": "^0.34.4"
+    "vitest": "^0.34.6"
   }
 }
