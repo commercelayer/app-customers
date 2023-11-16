@@ -2,6 +2,7 @@ import {
   ListItem,
   Section,
   Text,
+  getCustomerStatusName,
   withSkeletonTemplate
 } from '@commercelayer/app-elements'
 import type { Customer } from '@commercelayer/sdk'
@@ -19,7 +20,7 @@ export const CustomerInfo = withSkeletonTemplate<Props>(
             Status
           </Text>
           <Text tag='div' weight='semibold' className='capitalize'>
-            {customer?.status}
+            {getCustomerStatusName(customer?.status)}
           </Text>
         </ListItem>
         <ListItem tag='div'>
