@@ -8,6 +8,7 @@ import { Filters } from '#pages/Filters'
 import {
   CoreSdkProvider,
   ErrorBoundary,
+  GTMProvider,
   MetaTags,
   PageSkeleton,
   TokenProvider
@@ -40,37 +41,39 @@ export function App(): JSX.Element {
           loadingElement={<PageSkeleton />}
           organizationSlug={import.meta.env.PUBLIC_SELF_HOSTED_SLUG}
         >
-          <MetaTags />
-          <CoreSdkProvider>
-            <Router base={basePath}>
-              <Switch>
-                <Route path={appRoutes.home.path}>
-                  <Redirect to={appRoutes.list.path} />
-                </Route>
-                <Route path={appRoutes.list.path}>
-                  <CustomerList type='all' />
-                </Route>
-                <Route path={appRoutes.filters.path}>
-                  <Filters />
-                </Route>
-                <Route path={appRoutes.new.path}>
-                  <CustomerNew />
-                </Route>
-                <Route path={appRoutes.details.path}>
-                  <CustomerDetails />
-                </Route>
-                <Route path={appRoutes.edit.path}>
-                  <CustomerEdit />
-                </Route>
-                <Route path={appRoutes.orders.path}>
-                  <CustomerOrders />
-                </Route>
-                <Route>
-                  <ErrorNotFound />
-                </Route>
-              </Switch>
-            </Router>
-          </CoreSdkProvider>
+          <GTMProvider gtmId={window.clAppConfig.gtmId}>
+            <MetaTags />
+            <CoreSdkProvider>
+              <Router base={basePath}>
+                <Switch>
+                  <Route path={appRoutes.home.path}>
+                    <Redirect to={appRoutes.list.path} />
+                  </Route>
+                  <Route path={appRoutes.list.path}>
+                    <CustomerList type='all' />
+                  </Route>
+                  <Route path={appRoutes.filters.path}>
+                    <Filters />
+                  </Route>
+                  <Route path={appRoutes.new.path}>
+                    <CustomerNew />
+                  </Route>
+                  <Route path={appRoutes.details.path}>
+                    <CustomerDetails />
+                  </Route>
+                  <Route path={appRoutes.edit.path}>
+                    <CustomerEdit />
+                  </Route>
+                  <Route path={appRoutes.orders.path}>
+                    <CustomerOrders />
+                  </Route>
+                  <Route>
+                    <ErrorNotFound />
+                  </Route>
+                </Switch>
+              </Router>
+            </CoreSdkProvider>
+          </GTMProvider>
         </TokenProvider>
       </SWRConfig>
     </ErrorBoundary>
