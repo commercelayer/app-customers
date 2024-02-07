@@ -31,7 +31,7 @@ export const CustomerLastOrders = withSkeletonTemplate((): JSX.Element => {
       {showAll && (
         <Spacer top='4' bottom='4'>
           <Link href={appRoutes.orders.makePath(customerId)}>
-            <a>View all orders</a>
+            View all orders
           </Link>
         </Spacer>
       )}

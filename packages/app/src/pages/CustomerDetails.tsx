@@ -37,8 +37,12 @@ export function CustomerDetails(): JSX.Element {
     return (
       <PageLayout
         title='Customers'
-        onGoBack={() => {
-          setLocation(appRoutes.list.makePath())
+        navigationButton={{
+          label: 'Back',
+          icon: 'arrowLeft',
+          onClick: () => {
+            setLocation(appRoutes.list.makePath())
+          }
         }}
         mode={mode}
       >
@@ -61,18 +65,20 @@ export function CustomerDetails(): JSX.Element {
     <PageLayout
       mode={mode}
       actionButton={
-        <Link href={appRoutes.edit.makePath(customerId)}>
-          <a>Edit</a>
-        </Link>
+        <Link href={appRoutes.edit.makePath(customerId)}>Edit</Link>
       }
       title={
         <SkeletonTemplate isLoading={isLoading}>{pageTitle}</SkeletonTemplate>
       }
-      onGoBack={() => {
-        goBack({
-          setLocation,
-          defaultRelativePath: appRoutes.list.makePath()
-        })
+      navigationButton={{
+        label: 'Back',
+        icon: 'arrowLeft',
+        onClick: () => {
+          goBack({
+            setLocation,
+            defaultRelativePath: appRoutes.list.makePath()
+          })
+        }
       }}
       gap='only-top'
     >

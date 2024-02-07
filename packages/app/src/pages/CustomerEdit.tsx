@@ -36,8 +36,12 @@ export function CustomerEdit(): JSX.Element {
     return (
       <PageLayout
         title='Edit customer'
-        onGoBack={() => {
-          setLocation(goBackUrl)
+        navigationButton={{
+          label: 'Back',
+          icon: 'arrowLeft',
+          onClick: () => {
+            setLocation(goBackUrl)
+          }
         }}
       >
         <EmptyState
@@ -58,8 +62,12 @@ export function CustomerEdit(): JSX.Element {
       title={
         <SkeletonTemplate isLoading={isLoading}>Edit customer</SkeletonTemplate>
       }
-      onGoBack={() => {
-        setLocation(goBackUrl)
+      navigationButton={{
+        label: 'Back',
+        icon: 'arrowLeft',
+        onClick: () => {
+          setLocation(goBackUrl)
+        }
       }}
     >
       <ScrollToTop />

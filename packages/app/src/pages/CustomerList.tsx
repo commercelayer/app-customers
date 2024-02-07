@@ -1,7 +1,7 @@
 import { ListEmptyState } from '#components/ListEmptyState'
 import { ListItemCustomer } from '#components/ListItemCustomer'
 import { instructions } from '#data/filters'
-import { presets, type ListType } from '#data/lists'
+import { presets } from '#data/lists'
 import { appRoutes } from '#data/routes'
 import {
   PageLayout,
@@ -10,17 +10,9 @@ import {
   useTokenProvider
 } from '@commercelayer/app-elements'
 import { Link, useLocation } from 'wouter'
-import { navigate, useSearch } from 'wouter/use-location'
+import { navigate, useSearch } from 'wouter/use-browser-location'
 
-interface Props {
-  type: ListType
-}
-
-const pageTitle: Record<ListType, string> = {
-  all: 'Customers'
-}
-
-export function CustomerList({ type }: Props): JSX.Element {
+export function CustomerList(): JSX.Element {
   const {
     dashboardUrl,
     settings: { mode },
@@ -41,21 +33,18 @@ export function CustomerList({ type }: Props): JSX.Element {
     viewTitle == null || viewTitle === presets.all.viewTitle
   )
 
-  const onGoBack =
-    type === 'all'
-      ? () => {
+  return (
+    <PageLayout
+      title='Customers'
+      mode={mode}
+      navigationButton={{
+        label: 'Hub',
+        icon: 'arrowLeft',
+        onClick: () => {
           window.location.href =
             dashboardUrl != null ? `${dashboardUrl}/hub` : '/'
         }
-      : () => {
-          setLocation(appRoutes.list.makePath())
-        }
-
-  return (
-    <PageLayout
-      title={pageTitle[type]}
-      mode={mode}
-      onGoBack={onGoBack}
+      }}
       gap='only-top'
     >
       <SearchWithNav
@@ -98,16 +87,14 @@ export function CustomerList({ type }: Props): JSX.Element {
                 isUserCustomFiltered
                   ? 'userFiltered'
                   : viewTitle !== presets.all.viewTitle
-                  ? 'presetView'
-                  : 'history'
+                    ? 'presetView'
+                    : 'history'
               }
             />
           }
           actionButton={
             canUser('create', 'customers') ? (
-              <Link href={appRoutes.new.makePath()}>
-                <a>Add new</a>
-              </Link>
+              <Link href={appRoutes.new.makePath()}>Add new</Link>
             ) : undefined
           }
         />
