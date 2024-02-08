@@ -50,7 +50,7 @@ export function App(): JSX.Element {
                     <Redirect to={appRoutes.list.path} />
                   </Route>
                   <Route path={appRoutes.list.path}>
-                    <CustomerList type='all' />
+                    <CustomerList />
                   </Route>
                   <Route path={appRoutes.filters.path}>
                     <Filters />

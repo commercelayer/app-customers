@@ -27,8 +27,12 @@ export function CustomerNew(): JSX.Element {
     return (
       <PageLayout
         title='New customer'
-        onGoBack={() => {
-          setLocation(goBackUrl)
+        navigationButton={{
+          label: 'Back',
+          icon: 'arrowLeft',
+          onClick: () => {
+            setLocation(goBackUrl)
+          }
         }}
       >
         <EmptyState
@@ -47,8 +51,12 @@ export function CustomerNew(): JSX.Element {
   return (
     <PageLayout
       title={<>New customer</>}
-      onGoBack={() => {
-        setLocation(goBackUrl)
+      navigationButton={{
+        label: 'Customers',
+        icon: 'arrowLeft',
+        onClick: () => {
+          setLocation(goBackUrl)
+        }
       }}
     >
       <ScrollToTop />

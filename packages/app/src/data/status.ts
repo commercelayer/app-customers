@@ -1,4 +1,4 @@
-import type { IconProps } from '@commercelayer/app-elements'
+import type { StatusIconProps } from '@commercelayer/app-elements'
 import type { Order } from '@commercelayer/sdk'
 
 export type UITriggerAttributes =
@@ -25,8 +25,8 @@ type UIStatus =
 interface OrderDisplayStatus {
   status: UIStatus
   label: string
-  icon: IconProps['name']
-  color: IconProps['background']
+  icon: StatusIconProps['name']
+  color: StatusIconProps['background']
   task?: string
   triggerAttributes: UITriggerAttributes[]
 }

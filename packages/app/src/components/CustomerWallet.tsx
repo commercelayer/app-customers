@@ -1,9 +1,9 @@
 import { PaymentMethod } from '#components/PaymentMethod'
 import {
   Avatar,
-  Icon,
   ListItem,
   Section,
+  StatusIcon,
   withSkeletonTemplate,
   type AvatarProps
 } from '@commercelayer/app-elements'
@@ -53,7 +53,7 @@ export const CustomerWallet = withSkeletonTemplate<Props>(({ customer }) => {
             size='small'
           />
         ) : (
-          <Icon name='creditCard' background='teal' gap='large' />
+          <StatusIcon name='creditCard' background='teal' gap='large' />
         )
 
       return (
