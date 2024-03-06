@@ -4,7 +4,7 @@ import { instructions } from '#data/filters'
 import { presets } from '#data/lists'
 import { appRoutes } from '#data/routes'
 import {
-  PageLayout,
+  HomePageLayout,
   Spacer,
   useResourceFilters,
   useTokenProvider
@@ -13,11 +13,7 @@ import { Link, useLocation } from 'wouter'
 import { navigate, useSearch } from 'wouter/use-browser-location'
 
 export function CustomerList(): JSX.Element {
-  const {
-    dashboardUrl,
-    settings: { mode },
-    canUser
-  } = useTokenProvider()
+  const { canUser } = useTokenProvider()
 
   const queryString = useSearch()
   const [, setLocation] = useLocation()
@@ -34,19 +30,7 @@ export function CustomerList(): JSX.Element {
   )
 
   return (
-    <PageLayout
-      title='Customers'
-      mode={mode}
-      navigationButton={{
-        label: 'Hub',
-        icon: 'arrowLeft',
-        onClick: () => {
-          window.location.href =
-            dashboardUrl != null ? `${dashboardUrl}/hub` : '/'
-        }
-      }}
-      gap='only-top'
-    >
+    <HomePageLayout title='Customers'>
       <SearchWithNav
         queryString={queryString}
         onUpdate={(qs) => {
@@ -99,6 +83,6 @@ export function CustomerList(): JSX.Element {
           }
         />
       </Spacer>
-    </PageLayout>
+    </HomePageLayout>
   )
 }

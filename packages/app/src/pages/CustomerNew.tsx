@@ -58,6 +58,7 @@ export function CustomerNew(): JSX.Element {
           setLocation(goBackUrl)
         }
       }}
+      overlay
     >
       <ScrollToTop />
       <Spacer bottom='14'>
