@@ -18,7 +18,7 @@ export const CustomerAddresses = withSkeletonTemplate<Props>(
     const addresses = customer.customer_addresses?.map(
       (customerAddress, idx) =>
         customerAddress?.address != null ? (
-          <ListItem tag='div' key={idx}>
+          <ListItem key={idx}>
             <ResourceAddress
               resource={customerAddress?.address}
               editable={canUser('update', 'addresses')}

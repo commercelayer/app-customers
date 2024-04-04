@@ -15,7 +15,7 @@ export const CustomerInfo = withSkeletonTemplate<Props>(
   ({ customer }): JSX.Element => {
     return (
       <Section title='Info'>
-        <ListItem tag='div'>
+        <ListItem padding='y'>
           <Text tag='div' variant='info'>
             Status
           </Text>
@@ -23,7 +23,7 @@ export const CustomerInfo = withSkeletonTemplate<Props>(
             {getCustomerStatusName(customer?.status)}
           </Text>
         </ListItem>
-        <ListItem tag='div'>
+        <ListItem padding='y'>
           <Text tag='div' variant='info'>
             Group
           </Text>

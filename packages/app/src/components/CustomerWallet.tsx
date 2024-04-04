@@ -57,7 +57,7 @@ export const CustomerWallet = withSkeletonTemplate<Props>(({ customer }) => {
         )
 
       return (
-        <ListItem tag='div' icon={icon} key={idx}>
+        <ListItem icon={icon} key={idx}>
           <PaymentMethod customerPaymentSource={customerPaymentSource} />
         </ListItem>
       )
