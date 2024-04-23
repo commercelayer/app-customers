@@ -1,12 +1,16 @@
 import {
   Button,
+  Dropdown,
+  DropdownItem,
   EmptyState,
+  Icon,
   PageLayout,
   ResourceMetadata,
   ResourceTags,
   SkeletonTemplate,
   Spacer,
   goBack,
+  useEditMetadataOverlay,
   useTokenProvider
 } from '@commercelayer/app-elements'
 import { Link, useLocation, useRoute } from 'wouter'
@@ -24,7 +28,8 @@ import { isMockedId } from '#mocks'
 
 export function CustomerDetails(): JSX.Element {
   const {
-    settings: { mode }
+    settings: { mode },
+    canUser
   } = useTokenProvider()
   const [, setLocation] = useLocation()
   const [, params] = useRoute<{ customerId: string }>(appRoutes.details.path)
@@ -32,6 +37,9 @@ export function CustomerDetails(): JSX.Element {
   const customerId = params?.customerId ?? ''
 
   const { customer, isLoading, error } = useCustomerDetails(customerId)
+
+  const { Overlay: EditMetadataOverlay, show: showEditMetadataOverlay } =
+    useEditMetadataOverlay()
 
   if (error != null) {
     return (
@@ -65,11 +73,30 @@ export function CustomerDetails(): JSX.Element {
     <PageLayout
       mode={mode}
       actionButton={
-        <Link href={appRoutes.edit.makePath(customerId)} asChild>
-          <Button variant='primary' size='small'>
-            Edit
-          </Button>
-        </Link>
+        canUser('update', 'customers') && (
+          <div className='flex items-center gap-2'>
+            <Link href={appRoutes.edit.makePath(customerId)} asChild>
+              <Button variant='primary' size='small'>
+                Edit
+              </Button>
+            </Link>
+            <Dropdown
+              dropdownLabel={
+                <Button variant='secondary' size='small'>
+                  <Icon name='dotsThree' size={16} weight='bold' />
+                </Button>
+              }
+              dropdownItems={
+                <DropdownItem
+                  label='Set metadata'
+                  onClick={() => {
+                    showEditMetadataOverlay()
+                  }}
+                />
+              }
+            />
+          </div>
+        )
       }
       title={
         <SkeletonTemplate isLoading={isLoading}>{pageTitle}</SkeletonTemplate>
@@ -130,6 +157,13 @@ export function CustomerDetails(): JSX.Element {
           <Spacer top='14'>
             <CustomerTimeline customer={customer} />
           </Spacer>
+          {!isMockedId(customer.id) && (
+            <EditMetadataOverlay
+              resourceType={customer.type}
+              resourceId={customer.id}
+              title={customer.email}
+            />
+          )}
         </Spacer>
       </SkeletonTemplate>
     </PageLayout>
