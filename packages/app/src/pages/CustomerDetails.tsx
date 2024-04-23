@@ -65,7 +65,11 @@ export function CustomerDetails(): JSX.Element {
     <PageLayout
       mode={mode}
       actionButton={
-        <Link href={appRoutes.edit.makePath(customerId)}>Edit</Link>
+        <Link href={appRoutes.edit.makePath(customerId)} asChild>
+          <Button variant='primary' size='small'>
+            Edit
+          </Button>
+        </Link>
       }
       title={
         <SkeletonTemplate isLoading={isLoading}>{pageTitle}</SkeletonTemplate>

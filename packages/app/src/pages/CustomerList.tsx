@@ -4,7 +4,9 @@ import { instructions } from '#data/filters'
 import { presets } from '#data/lists'
 import { appRoutes } from '#data/routes'
 import {
+  Button,
   HomePageLayout,
+  Icon,
   Spacer,
   useResourceFilters,
   useTokenProvider
@@ -78,7 +80,17 @@ export function CustomerList(): JSX.Element {
           }
           actionButton={
             canUser('create', 'customers') ? (
-              <Link href={appRoutes.new.makePath()}>Add new</Link>
+              <Link href={appRoutes.new.makePath()} asChild>
+                <Button
+                  variant='secondary'
+                  size='mini'
+                  alignItems='center'
+                  aria-label='Add customer'
+                >
+                  <Icon name='plus' />
+                  Customer
+                </Button>
+              </Link>
             ) : undefined
           }
         />
