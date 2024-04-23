@@ -84,7 +84,9 @@ export function CustomerForm({
         >
           {defaultValues.email.length === 0 ? 'Create' : 'Update'} customer
         </Button>
-        <HookedValidationApiError apiError={apiError} />
+        <Spacer top='2'>
+          <HookedValidationApiError apiError={apiError} />
+        </Spacer>
       </Spacer>
     </HookedForm>
   )
