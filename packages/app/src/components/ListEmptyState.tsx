@@ -54,7 +54,7 @@ export function ListEmptyState({ scope = 'history' }: Props): JSX.Element {
       title='No customers yet!'
       description={
         <div>
-          <p>Add an order with the API, or use the CLI.</p>
+          <p>Add a customer with the API, or use the CLI.</p>
           <A
             target='_blank'
             href='https://docs.commercelayer.io/core/v/api-reference/customers'

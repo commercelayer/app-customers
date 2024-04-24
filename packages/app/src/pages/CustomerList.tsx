@@ -88,7 +88,7 @@ export function CustomerList(): JSX.Element {
                   aria-label='Add customer'
                 >
                   <Icon name='plus' />
-                  Customer
+                  New
                 </Button>
               </Link>
             ) : undefined
