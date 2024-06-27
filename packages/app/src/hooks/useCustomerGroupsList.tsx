@@ -1,10 +1,13 @@
 import { useCoreApi } from '@commercelayer/app-elements'
-import type { CustomerGroup } from '@commercelayer/sdk'
-import type { ListResponse } from '@commercelayer/sdk/lib/cjs/resource'
+import type {
+  CustomerGroup,
+  ListResponse,
+  QueryPageSize
+} from '@commercelayer/sdk'
 
 interface UseCustomerGroupsListSettings {
   pageNumber?: number
-  pageSize?: number
+  pageSize?: QueryPageSize
 }
 
 interface Props {

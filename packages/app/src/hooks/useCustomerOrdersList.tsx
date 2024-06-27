@@ -1,11 +1,10 @@
 import { isMockedId } from '#mocks'
 import { useCoreApi } from '@commercelayer/app-elements'
-import type { Order } from '@commercelayer/sdk'
-import type { ListResponse } from '@commercelayer/sdk/lib/cjs/resource'
+import type { ListResponse, Order, QueryPageSize } from '@commercelayer/sdk'
 
 interface UseCustomerOrdersListSettings {
   pageNumber?: number
-  pageSize?: number
+  pageSize?: QueryPageSize
 }
 
 interface Props {
