@@ -1,5 +1,8 @@
-import type { CommerceLayerClient, CustomerGroup } from '@commercelayer/sdk'
-import type { ListResponse } from '@commercelayer/sdk/lib/cjs/resource'
+import type {
+  CommerceLayerClient,
+  CustomerGroup,
+  ListResponse
+} from '@commercelayer/sdk'
 
 interface FetchCustomerGroupsConfig {
   sdkClient: CommerceLayerClient

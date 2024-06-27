@@ -1,9 +1,6 @@
 import {
   Button,
-  Dropdown,
-  DropdownItem,
   EmptyState,
-  Icon,
   PageLayout,
   ResourceMetadata,
   ResourceTags,
@@ -11,7 +8,8 @@ import {
   Spacer,
   goBack,
   useEditMetadataOverlay,
-  useTokenProvider
+  useTokenProvider,
+  type PageHeadingProps
 } from '@commercelayer/app-elements'
 import { Link, useLocation, useRoute } from 'wouter'
 
@@ -69,35 +67,33 @@ export function CustomerDetails(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
   const pageTitle = `${customer.email}`
 
+  const pageToolbar: PageHeadingProps['toolbar'] = {
+    buttons: [],
+    dropdownItems: []
+  }
+
+  if (canUser('update', 'customers')) {
+    pageToolbar.buttons?.push({
+      label: 'Edit',
+      size: 'small',
+      onClick: () => {
+        setLocation(appRoutes.edit.makePath(customerId))
+      }
+    })
+    pageToolbar.dropdownItems?.push([
+      {
+        label: 'Set metadata',
+        onClick: () => {
+          showEditMetadataOverlay()
+        }
+      }
+    ])
+  }
+
   return (
     <PageLayout
       mode={mode}
-      actionButton={
-        canUser('update', 'customers') && (
-          <div className='flex items-center gap-2'>
-            <Link href={appRoutes.edit.makePath(customerId)} asChild>
-              <Button variant='primary' size='small'>
-                Edit
-              </Button>
-            </Link>
-            <Dropdown
-              dropdownLabel={
-                <Button variant='secondary' size='small'>
-                  <Icon name='dotsThree' size={16} weight='bold' />
-                </Button>
-              }
-              dropdownItems={
-                <DropdownItem
-                  label='Set metadata'
-                  onClick={() => {
-                    showEditMetadataOverlay()
-                  }}
-                />
-              }
-            />
-          </div>
-        )
-      }
+      toolbar={pageToolbar}
       title={
         <SkeletonTemplate isLoading={isLoading}>{pageTitle}</SkeletonTemplate>
       }
